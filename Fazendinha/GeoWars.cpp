@@ -17,7 +17,7 @@
 #include "Green.h"
 #include "Orange.h"
 #include "Delay.h"
-
+#include "WorldBuilder.h"
 // ------------------------------------------------------------------------------
 
 Player * GeoWars::player  = nullptr;
@@ -48,14 +48,9 @@ void GeoWars::Init()
 
     // cria o painel de informações
     hud = new Hud();
-
+    WorldBuilder * builder = new WorldBuilder("Resources/map.png");
     // adiciona objetos na cena (sem colisão)
     scene->Add(player, STATIC);
-    scene->Add(new Magenta(player), STATIC);
-    scene->Add(new Blue(player), STATIC);
-    scene->Add(new Green(player), STATIC);
-    scene->Add(new Orange(player), STATIC);
-    scene->Add(new Delay(), STATIC);
 
     // ----------------------
     // inicializa a viewport
