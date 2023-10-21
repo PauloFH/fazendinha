@@ -10,7 +10,7 @@
 **********************************************************************************/
 
 #include "Hud.h"
-#include "GeoWars.h"
+#include "Fazendinha.h"
 
 // ------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ void Hud::Draw()
     font->Draw(40, 132, text.str(), textColor);
 
     text.str("");
-    text << "Mísseis: " << GeoWars::scene->Size() - 5;
+    text << "Mísseis: " << Fazendinha::scene->Size() - 5;
     font->Draw(40, 152, text.str(), textColor);
 
     text.str("");

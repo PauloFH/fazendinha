@@ -10,7 +10,7 @@
 **********************************************************************************/
 
 #include "Delay.h"
-#include "GeoWars.h"
+#include "Fazendinha.h"
 #include "Hud.h"
 
 // ------------------------------------------------------------------------------
@@ -36,16 +36,16 @@ void Delay::Update()
     if (notPlayed && timer.Elapsed(2.0f))
     {
         // toca áudio de introdução
-        GeoWars::audio->Play(START);
+        Fazendinha::audio->Play(START);
         notPlayed = false;
     }
 
     if (timer.Elapsed(6.0f))
     {
         // toca música do jogo
-        GeoWars::audio->Play(THEME, true);
-        GeoWars::viewHUD = true;
-        GeoWars::scene->Delete();
+        Fazendinha::audio->Play(THEME, true);
+        Fazendinha::viewHUD = true;
+        Fazendinha::scene->Delete();
     }
 }
 

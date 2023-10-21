@@ -1,5 +1,5 @@
 /**********************************************************************************
-// GeoWars (Código Fonte)
+// Fazendinha (Código Fonte)
 // 
 // Criação:     23 Out 2012
 // Atualização: 01 Nov 2021
@@ -10,7 +10,7 @@
 **********************************************************************************/
 
 #include "Resources.h"
-#include "GeoWars.h"
+#include "Fazendinha.h"
 #include "Engine.h"    
 #include "Magenta.h"
 #include "Blue.h"    
@@ -20,14 +20,19 @@
 #include "WorldBuilder.h"
 // ------------------------------------------------------------------------------
 
-Player * GeoWars::player  = nullptr;
-Audio  * GeoWars::audio   = nullptr;
-Scene  * GeoWars::scene   = nullptr;
-bool     GeoWars::viewHUD = false;
+Player * Fazendinha::player  = nullptr;
+Audio  * 
+
+
+
+
+Fazendinha::audio   = nullptr;
+Scene  * Fazendinha::scene   = nullptr;
+bool     Fazendinha::viewHUD = false;
 
 // ------------------------------------------------------------------------------
 
-void GeoWars::Init() 
+void Fazendinha::Init() 
 {
     // cria sistema de áudio
     audio = new Audio();
@@ -69,7 +74,7 @@ void GeoWars::Init()
 
 // ------------------------------------------------------------------------------
 
-void GeoWars::Update()
+void Fazendinha::Update()
 {
     // sai com o pressionamento da tecla ESC
     if (window->KeyDown(VK_ESCAPE))
@@ -121,7 +126,7 @@ void GeoWars::Update()
 
 // ------------------------------------------------------------------------------
 
-void GeoWars::Draw()
+void Fazendinha::Draw()
 {
     // desenha pano de fundo
     backg->Draw(viewport);
@@ -140,7 +145,7 @@ void GeoWars::Draw()
 
 // ------------------------------------------------------------------------------
 
-void GeoWars::Finalize()
+void Fazendinha::Finalize()
 {
     delete audio;
     delete hud;
@@ -164,17 +169,17 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     //engine->window->Size(1152, 648);
     engine->window->Mode(BORDERLESS);
     engine->window->Color(0, 0, 0);
-    engine->window->Title("GeoWars");
+    engine->window->Title("Fazendinha");
     engine->window->Icon(IDI_ICON);
     engine->window->Cursor(IDC_CURSOR);
     engine->window->HideCursor(true);
     //engine->graphics->VSync(true);
 
     // cria o jogo
-    Game * game = new GeoWars();
+    Game * game = new Fazendinha();
 
     // configura o jogo
-    game->Size(3840, 2160);
+    game->Size(4840, 3160);
     
     // inicia execução
     engine->Start(game);

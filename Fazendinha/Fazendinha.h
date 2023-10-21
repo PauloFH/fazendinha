@@ -1,5 +1,6 @@
 /**********************************************************************************
-// GeoWars (Arquivo de Cabeçalho)
+// 
+(Arquivo de Cabeçalho)
 // 
 // Criação:     23 Out 2012
 // Atualização: 01 Nov 2021
@@ -9,8 +10,8 @@
 //
 **********************************************************************************/
 
-#ifndef _GEOWARS_H_
-#define _GEOWARS_H_
+#ifndef _FAZENDINHA_H_
+#define _FAZENDINHA_H_
 
 // ------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@
 
 // ------------------------------------------------------------------------------
 
-enum ObjectIds { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT };
+enum ObjectIds { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT , GROUND, GRASS};
 
 // ------------------------------------------------------------------------------
 
@@ -31,7 +32,7 @@ enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL };
 
 // ------------------------------------------------------------------------------
 
-class GeoWars : public Game
+class Fazendinha : public Game
 {
 private:
     Background * backg = nullptr;   // pano de fundo
@@ -48,6 +49,8 @@ public:
     void Update();                  // atualização
     void Draw();                    // desenho
     void Finalize();                // finalização
+
+ 
 };
 
 // ---------------------------------------------------------------------------------

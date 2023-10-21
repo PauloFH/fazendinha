@@ -9,7 +9,7 @@
 //
 **********************************************************************************/
 
-#include "GeoWars.h"
+#include "Fazendinha.h"
 #include "Blue.h"
 #include "Random.h" 
 
@@ -43,7 +43,7 @@ Blue::~Blue()
 void Blue::OnCollision(Object * obj)
 {
       if (obj->Type() == MISSILE)
-        GeoWars::scene->Delete(this, MOVING);
+          Fazendinha::scene->Delete(this, MOVING);
 }
 
 // -------------------------------------------------------------------------------

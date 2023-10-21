@@ -9,7 +9,7 @@
 //
 **********************************************************************************/
 
-#include "GeoWars.h"
+#include "Fazendinha.h"
 #include "WallHit.h"
 #include "Random.h"
 
@@ -82,7 +82,7 @@ void WallHit::Update()
 
     // remove da cena quando todas as partículas estão inativas
     if (sparks->Inactive())
-        GeoWars::scene->Delete();
+        Fazendinha::scene->Delete();
 }
 
 // -------------------------------------------------------------------------------

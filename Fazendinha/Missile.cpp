@@ -11,11 +11,11 @@
 
 #include "Missile.h"
 #include "WallHit.h"
-#include "GeoWars.h"
+#include "Fazendinha.h"
 
 // ------------------------------------------------------------------------------
 
-Player* & Missile::player = GeoWars::player;        // referência para o player
+Player* & Missile::player = Fazendinha::player;        // referência para o player
 
 // ------------------------------------------------------------------------------
 
@@ -59,14 +59,14 @@ void Missile::Update()
         // volume do som de destruição depende da distância para o jogador
         float distance = Point::Distance(Point(x, y), Point(player->X(), player->Y()));
         float level = (MaxDistance - distance) / MaxDistance * BaseVolume;
-        GeoWars::audio->Volume(HITWALL, level);
-        GeoWars::audio->Play(HITWALL);
+        Fazendinha::audio->Volume(HITWALL, level);
+        Fazendinha::audio->Play(HITWALL);
 
         // adiciona explosão na cena
-        GeoWars::scene->Add(new WallHit(x,y), STATIC);
+        Fazendinha::scene->Add(new WallHit(x,y), STATIC);
 
         // remove míssil da cena
-        GeoWars::scene->Delete();
+        Fazendinha::scene->Delete();
     }
 }
 

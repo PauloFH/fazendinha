@@ -2,8 +2,8 @@
 #include "WorldBuilder.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-#include "Floor.h"
-#include "GeoWars.h"
+#include "Ground.h"
+#include "Fazendinha.h"
 WorldBuilder::WorldBuilder(const char* path)
 {
 	unsigned char* image = stbi_load(path, &width, &height, &channels, 3);
@@ -18,8 +18,8 @@ WorldBuilder::WorldBuilder(const char* path)
 				&& image[3 * (xx + (yy * width)) + 1] == 255
 				&& image[3 * (xx + (yy * width)) + 2] == 255
 				){
-				Floor* floor = new Floor(xx * 68.0f, yy * 68.0f);
-				GeoWars::scene->Add(floor, STATIC);
+				Ground* floor = new Ground(xx * 16.0f, yy *16.0f);
+				Fazendinha::scene->Add(floor, STATIC);
 			}
 
 		}

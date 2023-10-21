@@ -3,7 +3,7 @@
 #ifndef _WORLD_BUILDER_H_
 #define _WORLD_BUILDER_H_
 
-#include "GeoWars.h"
+#include "Fazendinha.h"
 
 class WorldBuilder
 {

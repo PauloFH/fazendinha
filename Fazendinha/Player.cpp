@@ -11,7 +11,7 @@
 
 #include "Player.h" 
 #include "Missile.h"
-#include "GeoWars.h"
+#include "Fazendinha.h"
 
 // -------------------------------------------------------------------------------
 
@@ -102,8 +102,8 @@ void Player::Update()
     // dispara míssil
     if (window->KeyPress(VK_SPACE))
     {
-        GeoWars::audio->Play(FIRE);
-        GeoWars::scene->Add(new Missile(), STATIC);
+        Fazendinha::audio->Play(FIRE);
+        Fazendinha::scene->Add(new Missile(), STATIC);
     }
 
     // atualiza calda do jogador
