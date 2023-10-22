@@ -238,6 +238,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Delay.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -252,6 +253,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Orange.cpp" />
     <ClCompile Include="Particles.cpp" />
+    <ClCompile Include="Plantation.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -274,6 +276,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Delay.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
@@ -288,6 +291,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Orange.h" />
     <ClInclude Include="Particles.h" />
+    <ClInclude Include="Plantation.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Renderer.h" />
