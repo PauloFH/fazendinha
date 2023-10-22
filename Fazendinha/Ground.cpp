@@ -37,7 +37,7 @@ void Ground::Draw() {
 	if (type == GROUND) {
 		sprite->Draw(x, y, Layer::MIDDLE);
 	}*/
-	sprite->Draw(x, y, Layer::Back, scale);
+	sprite->Draw(x, y, Layer::BACK, scale);
 }
 
 void Ground::OnCollision(Object* obj) {
