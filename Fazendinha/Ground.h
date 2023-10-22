@@ -6,6 +6,8 @@ class Ground : public Object {
 private:
 
 	Sprite* sprite;
+	Sprite* normal;
+	Sprite* molhado;
 	int posX;
 	int posY;
 	bool ocupado = false;

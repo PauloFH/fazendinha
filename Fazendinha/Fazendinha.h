@@ -31,6 +31,10 @@ enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL };
 
 // ------------------------------------------------------------------------------
 
+enum DayState { DAY, NIGHT };
+
+// ------------------------------------------------------------------------------
+
 class Fazendinha : public Game
 {
 private:
@@ -42,6 +46,9 @@ public:
     static Audio * audio;           // sitema de áudio
     static Scene * scene;           // cena do jogo
     static bool viewHUD;            // visualização do painel
+    static Timer timer;
+    static uint dayState;
+    static int dayCount;
 
     void Init();                    // inicialização
     void Update();                  // atualização
