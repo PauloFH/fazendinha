@@ -2,10 +2,13 @@
 #include "Fazendinha.h"
 Ground::Ground(int posX, int posY, bool toPut) {
 
-	sprite = new Sprite("Resources/Ground.png");
+	normal = new Sprite("Resources/solo1.png");
+	molhado = new Sprite("Resources/solo1Molhado.png");
+
+	sprite = normal;
 
 	MoveTo(posX, posY);
-	BBox(new Rect(-34, -34, 33, 33));
+	BBox(new Rect(-8, -8, 7, 7));
 
 	if (toPut) {
 		type = GRASS;
@@ -13,6 +16,9 @@ Ground::Ground(int posX, int posY, bool toPut) {
 	else {
 		type = GROUND;
 	}
+
+	Scale(2.0);
+
 }
 Ground::~Ground() {
 	// nao deleta o floor
@@ -23,12 +29,15 @@ void Ground::Update() {
 }
 
 void Ground::Draw() {
-	if (type == GRASS) {
+	
+	/*if (type == GRASS) {
 		sprite->Draw(x, y, Layer::LOWER);
 	}
 	if (type == GROUND) {
 		sprite->Draw(x, y, Layer::MIDDLE);
-	}
+	}*/
+
+	sprite->Draw(x, y, Layer::LOWER, scale);
 }
 
 void Ground::OnCollision(Object* obj) {

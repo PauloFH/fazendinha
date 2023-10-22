@@ -18,17 +18,18 @@
 #include "Orange.h"
 #include "Delay.h"
 #include "WorldBuilder.h"
+#include "Filter.h"
+#include "Plantation.h"
+#include "Ground.h"
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
-Audio  * 
-
-
-
-
-Fazendinha::audio   = nullptr;
+Audio  * Fazendinha::audio   = nullptr;
 Scene  * Fazendinha::scene   = nullptr;
 bool     Fazendinha::viewHUD = false;
+Timer Fazendinha::timer;
+uint Fazendinha::dayState = DAY;
+int Fazendinha::dayCount = 1;
 
 // ------------------------------------------------------------------------------
 
@@ -70,6 +71,19 @@ void Fazendinha::Init()
     viewport.right = viewport.left + window->Width();
     viewport.top = 0.0f + dify;
     viewport.bottom = viewport.top + window->Height();
+
+
+    // Carregamento das coisas do jogo em si
+
+    // Aqui já começa a configuração do jogo em si
+    timer.Start();
+
+    Filter* filter = new Filter();
+    scene->Add(filter, STATIC);
+
+    Plantation* plant = new Plantation(0);
+    scene->Add(plant, STATIC);
+
 }
 
 // ------------------------------------------------------------------------------
@@ -85,9 +99,11 @@ void Fazendinha::Update()
     scene->CollisionDetection();
 
     // ativa ou desativa a bounding box
-    if (window->KeyPress('B'))
+    if (window->KeyPress('B')) {
         viewBBox = !viewBBox;
-
+        Filter::activated = !Filter::activated;
+    }
+       
     // ativa ou desativa o heads up display
     if (window->KeyPress('H'))
         viewHUD = !viewHUD;
@@ -121,6 +137,25 @@ void Fazendinha::Update()
     {
         viewport.top = game->Height() - window->Height();
         viewport.bottom = game->Height();
+    }
+
+    // ------------------------------------------------------------------------------
+    //                          MECÂNICAS DE JOGO
+    // ------------------------------------------------------------------------------
+
+    if (dayState == DAY && timer.Elapsed(300.0f)) {
+        Filter::activated = true;
+        dayState = NIGHT;
+    }
+    else if (dayState == NIGHT && timer.Elapsed(600.0f)) {
+        Filter::activated = false;
+        dayState = DAY;
+        timer.Reset();
+    }
+
+    if (window->KeyPress(VK_LBUTTON)) {
+        Ground* ground = new Ground(window->MouseX() + game->viewport.left, window->MouseY() + game->viewport.top);
+        scene->Add(ground, STATIC);
     }
 } 
 
@@ -165,14 +200,14 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     Engine * engine = new Engine();
 
     // configura motor
-    //engine->window->Mode(WINDOWED);
-    //engine->window->Size(1152, 648);
-    engine->window->Mode(BORDERLESS);
-    engine->window->Color(0, 0, 0);
+    engine->window->Mode(WINDOWED);
+    engine->window->Size(968, 680);
+    engine->window->Color(200, 24, 240);
+    //engine->window->Mode(BORDERLESS);
     engine->window->Title("Fazendinha");
     engine->window->Icon(IDI_ICON);
     engine->window->Cursor(IDC_CURSOR);
-    engine->window->HideCursor(true);
+    engine->window->HideCursor(false);
     //engine->graphics->VSync(true);
 
     // cria o jogo
