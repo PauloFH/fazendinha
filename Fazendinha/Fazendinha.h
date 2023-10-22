@@ -20,11 +20,10 @@
 #include "Scene.h"
 #include "Background.h"
 #include "Player.h"
-#include "Hud.h"
 
 // ------------------------------------------------------------------------------
 
-enum ObjectIds { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT , GROUND, GRASS};
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME,COMMUNITY, MISSILE};
 
 // ------------------------------------------------------------------------------
 
@@ -40,7 +39,6 @@ class Fazendinha : public Game
 {
 private:
     Background * backg = nullptr;   // pano de fundo
-    Hud * hud = nullptr;            // painel de informações
     bool viewBBox = false;          // visualização das bouding boxes
 
 public:

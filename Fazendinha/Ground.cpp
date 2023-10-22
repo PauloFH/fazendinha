@@ -1,5 +1,6 @@
 #include "Ground.h"
 #include "Fazendinha.h"
+
 Ground::Ground(int posX, int posY, bool toPut) {
 
 	normal = new Sprite("Resources/solo1.png");
@@ -36,8 +37,7 @@ void Ground::Draw() {
 	if (type == GROUND) {
 		sprite->Draw(x, y, Layer::MIDDLE);
 	}*/
-
-	sprite->Draw(x, y, Layer::LOWER, scale);
+	sprite->Draw(x, y, Layer::Back, scale);
 }
 
 void Ground::OnCollision(Object* obj) {

@@ -1,9 +1,11 @@
 ﻿
 #include "WorldBuilder.h"
 #define STB_IMAGE_IMPLEMENTATION
+
 #include "stb_image.h"
 #include "Ground.h"
 #include "Fazendinha.h"
+#include "Build.h"
 WorldBuilder::WorldBuilder(const char* path)
 {
 	unsigned char* image = stbi_load(path, &width, &height, &channels, 3);
@@ -18,8 +20,14 @@ WorldBuilder::WorldBuilder(const char* path)
 				&& image[3 * (xx + (yy * width)) + 1] == 255
 				&& image[3 * (xx + (yy * width)) + 2] == 255
 				){
-				Ground* floor = new Ground(xx * 16.0f, yy *16.0f);
-				Fazendinha::scene->Add(floor, STATIC);
+				//Fazendinha::scene->Add(new Ground(xx * 16.0f, yy * 16.0f), STATIC);
+				Fazendinha::scene->Add((new Build(xx * 144.0f, yy * 144.0f, new Sprite("Resources/home.png"), HOME)), STATIC);
+			}
+			if (image[3 * (xx + (yy * width))] == 255
+				&& image[3 * (xx + (yy * width)) + 1] == 2
+				&& image[3 * (xx + (yy * width)) + 2] == 255
+				) {
+				//Fazendinha::scene->Add((new Build(xx * 144.0f, yy * 144.0f,new Sprite("Resources/home.png"), HOME)), STATIC);
 			}
 
 		}

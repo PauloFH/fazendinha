@@ -23,6 +23,7 @@ using namespace DirectX;
 
 struct Layer
 {
+    static const float MOSTBACK;
     static const float FRONT;
     static const float UPPER;
     static const float MIDDLE;
