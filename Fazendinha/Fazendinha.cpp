@@ -12,11 +12,6 @@
 #include "Resources.h"
 #include "Fazendinha.h"
 #include "Engine.h"    
-#include "Magenta.h"
-#include "Blue.h"    
-#include "Green.h"
-#include "Orange.h"
-#include "Delay.h"
 #include "WorldBuilder.h"
 // ------------------------------------------------------------------------------
 
@@ -47,12 +42,11 @@ void Fazendinha::Init()
     audio->Volume(START, 0.8f);
 
     // carrega/incializa objetos
-    backg   = new Background("Resources/Space.jpg");
+    backg   = new Background("Resources/map_base.png");
     player  = new Player();
     scene   = new Scene();
 
     // cria o painel de informações
-    hud = new Hud();
     WorldBuilder * builder = new WorldBuilder("Resources/map.png");
     // adiciona objetos na cena (sem colisão)
     scene->Add(player, STATIC);
@@ -89,8 +83,6 @@ void Fazendinha::Update()
         viewBBox = !viewBBox;
 
     // ativa ou desativa o heads up display
-    if (window->KeyPress('H'))
-        viewHUD = !viewHUD;
 
     // --------------------
     // atualiza a viewport
@@ -136,7 +128,6 @@ void Fazendinha::Draw()
 
     // desenha painel de informações
     if (viewHUD)
-        hud->Draw();
 
     // desenha bounding box
     if (viewBBox)
@@ -148,7 +139,6 @@ void Fazendinha::Draw()
 void Fazendinha::Finalize()
 {
     delete audio;
-    delete hud;
     delete scene;
     delete backg;
 }
@@ -165,9 +155,9 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     Engine * engine = new Engine();
 
     // configura motor
-    //engine->window->Mode(WINDOWED);
+    engine->window->Mode(WINDOWED);
     //engine->window->Size(1152, 648);
-    engine->window->Mode(BORDERLESS);
+  //  engine->window->Mode(BORDERLESS);
     engine->window->Color(0, 0, 0);
     engine->window->Title("Fazendinha");
     engine->window->Icon(IDI_ICON);

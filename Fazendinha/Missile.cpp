@@ -10,7 +10,6 @@
 **********************************************************************************/
 
 #include "Missile.h"
-#include "WallHit.h"
 #include "Fazendinha.h"
 
 // ------------------------------------------------------------------------------
@@ -62,8 +61,6 @@ void Missile::Update()
         Fazendinha::audio->Volume(HITWALL, level);
         Fazendinha::audio->Play(HITWALL);
 
-        // adiciona explosão na cena
-        Fazendinha::scene->Add(new WallHit(x,y), STATIC);
 
         // remove míssil da cena
         Fazendinha::scene->Delete();

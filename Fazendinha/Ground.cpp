@@ -1,11 +1,12 @@
 #include "Ground.h"
 #include "Fazendinha.h"
+
 Ground::Ground(int posX, int posY, bool toPut) {
 
 	sprite = new Sprite("Resources/Ground.png");
 
 	MoveTo(posX, posY);
-	BBox(new Rect(-34, -34, 33, 33));
+	//BBox(new Rect(-34, -34, 33, 33));
 
 	if (toPut) {
 		type = GRASS;
@@ -24,10 +25,10 @@ void Ground::Update() {
 
 void Ground::Draw() {
 	if (type == GRASS) {
-		sprite->Draw(x, y, Layer::LOWER);
+		sprite->Draw(x, y, Layer::BACK);
 	}
 	if (type == GROUND) {
-		sprite->Draw(x, y, Layer::MIDDLE);
+		sprite->Draw(x, y, Layer::BACK);
 	}
 }
 

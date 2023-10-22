@@ -234,9 +234,8 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Background.cpp" />
-    <ClCompile Include="Blue.cpp" />
+    <ClCompile Include="Build.cpp" />
     <ClCompile Include="Controller.cpp" />
-    <ClCompile Include="Delay.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -244,13 +243,9 @@
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Fazendinha.cpp" />
     <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Green.cpp" />
-    <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Magenta.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Object.cpp" />
-    <ClCompile Include="Orange.cpp" />
     <ClCompile Include="Particles.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
@@ -262,7 +257,6 @@
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
-    <ClCompile Include="WallHit.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WorldBuilder.cpp" />
   </ItemGroup>
@@ -271,8 +265,8 @@
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Blue.h" />
+    <ClInclude Include="Build.h" />
     <ClInclude Include="Controller.h" />
-    <ClInclude Include="Delay.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Font.h" />
@@ -280,13 +274,9 @@
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Fazendinha.h" />
     <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Green.h" />
-    <ClInclude Include="Hud.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="Magenta.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="Orange.h" />
     <ClInclude Include="Particles.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Random.h" />
@@ -301,7 +291,6 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Vector.h" />
-    <ClInclude Include="WallHit.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldBuilder.h" />
   </ItemGroup>

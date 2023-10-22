@@ -20,11 +20,12 @@
 //  - A profundidade 0.01 é reservada para as bounding boxes
 //  - O valor máximo deve ser menor que 1.00
 
-const float Layer::FRONT  = 0.02f;
-const float Layer::UPPER  = 0.25f;
-const float Layer::MIDDLE = 0.50f;
-const float Layer::LOWER  = 0.75f;
-const float Layer::BACK   = 0.99f;
+const float Layer::FRONT    = 0.02f;
+const float Layer::UPPER    = 0.25f;
+const float Layer::MIDDLE   = 0.50f;
+const float Layer::LOWER    = 0.75f;
+const float Layer::MOSTBACK = 0.80f;
+const float Layer::BACK     = 0.99f;
 
 // ---------------------------------------------------------------------------------
 
