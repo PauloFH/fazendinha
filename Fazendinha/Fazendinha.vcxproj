@@ -239,6 +239,8 @@
     <ClCompile Include="BauSpaces.cpp" />
     <ClCompile Include="Build.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Cookout.cpp" />
+    <ClCompile Include="CraftMenu.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Fence.cpp" />
@@ -264,6 +266,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TelaInicial.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -281,6 +284,8 @@
     <ClInclude Include="Blue.h" />
     <ClInclude Include="Build.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Cookout.h" />
+    <ClInclude Include="CraftMenu.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Fence.h" />
@@ -309,6 +314,7 @@
     <ClInclude Include="InventorySpace.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="TelaInicial.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileSet.h" />
     <ClInclude Include="Timer.h" />

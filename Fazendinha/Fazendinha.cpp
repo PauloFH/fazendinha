@@ -22,6 +22,7 @@
 #include "Item.h"
 #include "Bau.h"
 #include "Enemy.h"
+#include "Cookout.h"
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
@@ -116,6 +117,8 @@ void Fazendinha::Init()
     Enemy* bug = new Enemy();
     scene->Add(bug, MOVING);
 
+    Cookout* ckt = new Cookout();
+    scene->Add(ckt, STATIC);
 }
 
 // ------------------------------------------------------------------------------
