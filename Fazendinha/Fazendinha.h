@@ -20,10 +20,11 @@
 #include "Scene.h"
 #include "Background.h"
 #include "Player.h"
+#include "Mouse.h"
 
 // ------------------------------------------------------------------------------
 
-enum ObjectIds { PLAYER, GROUND, GRASS, HOME,COMMUNITY, MISSILE};
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE};
 
 // ------------------------------------------------------------------------------
 
@@ -49,6 +50,7 @@ public:
     static Timer timer;
     static uint dayState;
     static int dayCount;
+    static Mouse * mouse;
 
     void Init();                    // inicialização
     void Update();                  // atualização
