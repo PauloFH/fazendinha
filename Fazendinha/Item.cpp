@@ -1,7 +1,7 @@
 #include "Item.h"
 #include "Fazendinha.h"
 
-Item::Item(uint itType = 0, InventorySpace* spc = nullptr) {
+Item::Item(uint itType, InventorySpace* spc) {
 	
 	itemType = itType;
 	space = spc;
@@ -11,6 +11,10 @@ Item::Item(uint itType = 0, InventorySpace* spc = nullptr) {
 	}
 	else if (itemType == SEEDCHIRIVIA) {
 		sprite = new Sprite("Resources/Items/seedChirivia.png");
+	}
+
+	if (itemType == ITEMREGADOR) {
+		sprite = new Sprite("Resources/Items/regador.png");
 	}
 
 	BBox(new Rect(-24, -24, 23, 23));
@@ -23,10 +27,27 @@ Item::~Item() {
 }
 
 void Item::Update() {
-	if (!moving) {
-		MoveTo(space->X(), space->Y());
-		space->ocupado = true;
+
+	if (pego) {
+		//MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
+		if (!moving && space != nullptr && space->X() != -10000) {
+			MoveTo(space->X(), space->Y());
+			space->ocupado = true;
+		}
+		if (space->X() == -10000) {
+			space->ocupado = true;
+		}
 	}
+	else {
+		if (!moving && space != nullptr && space->X() != -10000) {
+			MoveTo(space->X(), space->Y());
+			space->ocupado = true;
+		}
+		if (space->X() == -10000) {
+			space->ocupado = true;
+		}
+	}
+
 }
 
 void Item::Draw() {
@@ -35,20 +56,20 @@ void Item::Draw() {
 
 void Item::OnCollision(Object* obj) {
 	if (obj->Type() == MOUSE) {
-		if (!Fazendinha::mouse->carrying && window->KeyPress(VK_LBUTTON)) {
+		if (!pego && !Fazendinha::mouse->carrying && window->KeyPress(VK_LBUTTON)) {
 			Fazendinha::mouse->carrying = true;
 			Fazendinha::mouse->itemHolded = this;
-			Fazendinha::mouse->itemHolded->space->cont--;
+			if (Fazendinha::mouse->itemHolded->space != nullptr) {
+				Fazendinha::mouse->itemHolded->space->cont--;
+			}
 			moving = true;
 		}
 
-		if (Fazendinha::mouse->carrying && Fazendinha::mouse->itemHolded == this && window->KeyPress(VK_LBUTTON)) {
-
+		if (!pego && Fazendinha::mouse->carrying && Fazendinha::mouse->itemHolded == this && window->KeyPress(VK_LBUTTON)) {
 			Fazendinha::mouse->carrying = false;
 			Fazendinha::mouse->itemHolded->considerado = false;
 			Fazendinha::mouse->itemHolded = nullptr;
 			moving = false;
-
 		}
 	}
 

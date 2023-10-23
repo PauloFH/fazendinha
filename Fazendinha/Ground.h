@@ -7,13 +7,14 @@ private:
 
 	Sprite* sprite;
 	Sprite* normal;
+	Sprite* arado;
 	Sprite* molhado;
 	int posX;
 	int posY;
 	bool ocupado = false;
-	bool isMolhado = false;
 
 public:
+	bool isMolhado = false;
 
 	int Height();
 	int Width();

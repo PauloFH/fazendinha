@@ -8,10 +8,10 @@ class Bau : public Object {
 
 private:
 	Sprite* sprite;
-	BauSpaces* bauOpened;
 	bool opened = false;
 
 public:
+	BauSpaces* bauOpened;
 
 	Bau();
 	~Bau();

@@ -17,6 +17,8 @@ BauSpaces::BauSpaces() {
 	varX = 232;
 	varY = window->Height() / 2 - 43;
 
+	MoveTo(100000, 100000);
+
 }
 
 BauSpaces::~BauSpaces() {

@@ -7,7 +7,6 @@ Plantation::Plantation(uint plant = CHIRIVIA) {
 
 	plantationType = plant;
 	plantationState = GROWING;
-	plantationType = COUVEFLOR;
 
 	if (plantationType == CHIRIVIA) {
 		numStages = 6;
@@ -45,5 +44,15 @@ void Plantation::Update() {
 }
 
 void Plantation::OnCollision(Object* obj) {
+	if (obj->Type() == MOUSE) {
+		if (plantationState == MATURE && window->KeyPress(VK_LBUTTON)) {
+			InventorySpace* tst = new InventorySpace();
+			tst->MoveTo(-10000, -10000);
+			Item* fruto = new Item(0, tst);
+			Fazendinha::scene->Add(fruto, MOVING);
+			fruto->MoveTo(x, y);
 
+			Fazendinha::scene->Delete(this, STATIC);
+		}
+	}
 }

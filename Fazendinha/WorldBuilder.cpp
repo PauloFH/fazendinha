@@ -20,7 +20,7 @@ WorldBuilder::WorldBuilder(const char* path)
 				&& image[3 * (xx + (yy * width)) + 1] == 255
 				&& image[3 * (xx + (yy * width)) + 2] == 255
 				){
-				Fazendinha::scene->Add(new Ground(xx * 64.0f, yy * 64.0f), STATIC);
+				Fazendinha::scene->Add(new Ground(xx * 32.0f, yy * 32.0f), STATIC);
 			}
 			if (image[3 * (xx + (yy * width))] == 255
 				&& image[3 * (xx + (yy * width)) + 1] == 2

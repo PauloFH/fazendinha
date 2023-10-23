@@ -10,6 +10,8 @@ public:
 	bool ocupado = false;
 	uint itemType;
 	int cont = 0;
+	char chave;
+	Object* objItem;
 
 	InventorySpace();
 	~InventorySpace();
