@@ -1,12 +1,15 @@
 #pragma once
 
 #include "Object.h"
+#include "Font.h"
 
 class InventorySpace : public Object {
 private:
 
 public:
 	bool ocupado = false;
+	uint itemType;
+	int cont = 0;
 
 	InventorySpace();
 	~InventorySpace();
@@ -16,7 +19,3 @@ public:
 	void OnCollision(Object* obj);
 
 };
-
-inline void InventorySpace::Draw() {
-
-}

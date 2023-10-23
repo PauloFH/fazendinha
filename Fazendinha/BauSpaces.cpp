@@ -61,13 +61,6 @@ void BauSpaces::Update() {
 			}
 		}
 
-
-		std::stringstream text;
-
-		text.str("");
-
-		text << "testee" << ".\n";
-		OutputDebugString(text.str().c_str());
 	}
 	
 }

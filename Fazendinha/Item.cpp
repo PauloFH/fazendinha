@@ -38,12 +38,14 @@ void Item::OnCollision(Object* obj) {
 		if (!Fazendinha::mouse->carrying && window->KeyPress(VK_LBUTTON)) {
 			Fazendinha::mouse->carrying = true;
 			Fazendinha::mouse->itemHolded = this;
+			Fazendinha::mouse->itemHolded->space->cont--;
 			moving = true;
 		}
 
 		if (Fazendinha::mouse->carrying && Fazendinha::mouse->itemHolded == this && window->KeyPress(VK_LBUTTON)) {
 
 			Fazendinha::mouse->carrying = false;
+			Fazendinha::mouse->itemHolded->considerado = false;
 			Fazendinha::mouse->itemHolded = nullptr;
 			moving = false;
 

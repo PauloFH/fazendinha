@@ -239,6 +239,7 @@
     <ClCompile Include="BauSpaces.cpp" />
     <ClCompile Include="Build.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Filter.cpp" />
     <ClCompile Include="Ground.cpp" />
@@ -279,6 +280,7 @@
     <ClInclude Include="Blue.h" />
     <ClInclude Include="Build.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="Ground.h" />

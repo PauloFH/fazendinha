@@ -20,6 +20,7 @@
 #include "Inventary.h"
 #include "Item.h"
 #include "Bau.h"
+#include "Enemy.h"
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
@@ -30,6 +31,7 @@ Timer Fazendinha::timer;
 uint Fazendinha::dayState = DAY;
 int Fazendinha::dayCount = 1;
 Mouse * Fazendinha::mouse = nullptr;
+Font* Fazendinha::text = nullptr;
 
 // ------------------------------------------------------------------------------
 
@@ -77,6 +79,9 @@ void Fazendinha::Init()
     // Aqui já começa a configuração do jogo em si
     timer.Start();
 
+    text = new Font("Resources/text.png");
+    text->Spacing(65);
+
     mouse = new Mouse();
     scene->Add(mouse, MOVING);
 
@@ -84,10 +89,13 @@ void Fazendinha::Init()
     scene->Add(invent, STATIC);
 
     Item* chirivia = new Item(0, invent->spaces[4]);
-    scene->Add(chirivia, STATIC);
+    scene->Add(chirivia, MOVING);
+
+    Item* chirivia2 = new Item(0, invent->spaces[2]);
+    scene->Add(chirivia2, MOVING);
 
     Item* seedChirivia = new Item(1, invent->spaces[5]);
-    scene->Add(seedChirivia, STATIC);
+    scene->Add(seedChirivia, MOVING);
 
     Filter* filter = new Filter();
     scene->Add(filter, STATIC);
@@ -100,6 +108,9 @@ void Fazendinha::Init()
 
     Bau* bau = new Bau();
     scene->Add(bau, STATIC);
+
+    Enemy* bug = new Enemy();
+    scene->Add(bug, MOVING);
 
 }
 
