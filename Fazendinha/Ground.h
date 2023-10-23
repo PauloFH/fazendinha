@@ -11,6 +11,7 @@ private:
 	int posX;
 	int posY;
 	bool ocupado = false;
+	bool isMolhado = false;
 
 public:
 

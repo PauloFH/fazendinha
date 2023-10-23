@@ -22,6 +22,9 @@ Plantation::Plantation(uint plant = CHIRIVIA) {
 
 	BBox(new Rect(-8, -1, 7, 15));
 	Scale(2.0);
+	MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
+
+	type = PLANTATION;
 
 }
 
@@ -38,8 +41,6 @@ void Plantation::Update() {
 	else if(Fazendinha::timer.Elapsed(600.0f)){
 		animation->NextFrame();
 	}
-
-	MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
 	
 }
 

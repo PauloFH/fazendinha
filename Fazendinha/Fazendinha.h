@@ -1,12 +1,12 @@
 /**********************************************************************************
 // 
-(Arquivo de CabeÁalho)
+(Arquivo de Cabe√ßalho)
 // 
-// CriaÁ„o:     23 Out 2012
-// AtualizaÁ„o: 01 Nov 2021
+// Cria√ß√£o:     23 Out 2012
+// Atualiza√ß√£o: 01 Nov 2021
 // Compilador:  Visual C++ 2022
 //
-// DescriÁ„o:   DemonstraÁ„o da vers„o final do motor
+// Descri√ß√£o:   Demonstra√ß√£o da vers√£o final do motor
 //
 **********************************************************************************/
 
@@ -20,10 +20,12 @@
 #include "Scene.h"
 #include "Background.h"
 #include "Player.h"
+#include "Mouse.h"
 
 // ------------------------------------------------------------------------------
 
-enum ObjectIds { PLAYER, GROUND, GRASS, HOME,COMMUNITY, MISSILE, FENCE, SHOP_BUILD};
+
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY, FENCE, SHOP_BUILD};
 
 // ------------------------------------------------------------------------------
 
@@ -39,21 +41,23 @@ class Fazendinha : public Game
 {
 private:
     Background * backg = nullptr;   // pano de fundo
-    bool viewBBox = true;          // visualizaÁ„o das bouding boxes
+    bool viewBBox = true;          // visualiza√ß√£o das bouding boxes
 
 public:
     static Player * player;         // nave controlada pela jogador
-    static Audio * audio;           // sitema de ·udio
+    static Audio * audio;           // sitema de √°udio
     static Scene * scene;           // cena do jogo
-    static bool viewHUD;            // visualizaÁ„o do painel
+    static bool viewHUD;            // visualiza√ß√£o do painel
     static Timer timer;
     static uint dayState;
     static int dayCount;
+    static Mouse * mouse;
+    static Font * text;
 
-    void Init();                    // inicializaÁ„o
-    void Update();                  // atualizaÁ„o
+    void Init();                    // inicializa√ß√£o
+    void Update();                  // atualiza√ß√£o
     void Draw();                    // desenho
-    void Finalize();                // finalizaÁ„o
+    void Finalize();                // finaliza√ß√£o
 
  
 };

@@ -17,6 +17,11 @@
 #include "Plantation.h"
 #include "Ground.h"
 #include "Build.h"
+#include "Animal.h"
+#include "Inventary.h"
+#include "Item.h"
+#include "Bau.h"
+#include "Enemy.h"
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
@@ -26,10 +31,12 @@ bool     Fazendinha::viewHUD = false;
 Timer Fazendinha::timer;
 uint Fazendinha::dayState = DAY;
 int Fazendinha::dayCount = 1;
+Mouse * Fazendinha::mouse = nullptr;
+Font* Fazendinha::text = nullptr;
 
 // ------------------------------------------------------------------------------
 
-void Fazendinha::Init() 
+void Fazendinha::Init()
 {
     // cria sistema de áudio
     audio = new Audio();
@@ -48,8 +55,9 @@ void Fazendinha::Init()
     player  = new Player();
     scene   = new Scene();
 
+
     // cria o painel de informações
-    WorldBuilder * builder = new WorldBuilder("Resources/map.png");
+    WorldBuilder* builder = new WorldBuilder("Resources/map.png");
     // adiciona objetos na cena (sem colisão)
     scene->Add(player, STATIC);
 
@@ -75,11 +83,38 @@ void Fazendinha::Init()
     // Aqui já começa a configuração do jogo em si
     timer.Start();
 
+    text = new Font("Resources/text.png");
+    text->Spacing(65);
+
+    mouse = new Mouse();
+    scene->Add(mouse, MOVING);
+
+    Inventary* invent = new Inventary();
+    scene->Add(invent, STATIC);
+
+    Item* chirivia = new Item(0, invent->spaces[4]);
+    scene->Add(chirivia, MOVING);
+
+    Item* chirivia2 = new Item(0, invent->spaces[2]);
+    scene->Add(chirivia2, MOVING);
+
+    Item* seedChirivia = new Item(1, invent->spaces[5]);
+    scene->Add(seedChirivia, MOVING);
+
     Filter* filter = new Filter();
     scene->Add(filter, STATIC);
 
     Plantation* plant = new Plantation(0);
     scene->Add(plant, STATIC);
+    
+    Animal* anim = new Animal(0);
+    scene->Add(anim, MOVING);
+
+    Bau* bau = new Bau();
+    scene->Add(bau, STATIC);
+
+    Enemy* bug = new Enemy();
+    scene->Add(bug, MOVING);
 
 }
 
@@ -94,6 +129,7 @@ void Fazendinha::Update()
     // atualiza cena e calcula colisões
     scene->Update();
     scene->CollisionDetection();
+    scene->DrawBBox();
 
     // ativa ou desativa a bounding box
     if (window->KeyPress('B')) {
@@ -145,13 +181,15 @@ void Fazendinha::Update()
     else if (dayState == NIGHT && timer.Elapsed(600.0f)) {
         Filter::activated = false;
         dayState = DAY;
+        dayCount++;
         timer.Reset();
     }
 
-    if (window->KeyPress(VK_LBUTTON)) {
+    if (window->KeyPress(VK_LBUTTON) && mouse->State() != COLISAO && player->PlayerState() == ARADOR) {
         Ground* ground = new Ground(window->MouseX() + game->viewport.left, window->MouseY() + game->viewport.top);
-        scene->Add(ground, STATIC);
+        scene->Add(ground, MOVING);
     }
+
 } 
 
 // ------------------------------------------------------------------------------
