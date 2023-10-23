@@ -21,7 +21,8 @@ Player::Player()
     sprite = new Sprite("Resources/Player.png");
     speed  = new Vector(90.0f, 0.0f);
     BBox(new Circle(18.0f));
-    MoveTo(game->CenterX(), game->CenterY());
+    MoveTo(500, 600);
+   // MoveTo(game->CenterX(), game->CenterY());
     type = PLAYER;
 
     // configuração do gerador de partículas
