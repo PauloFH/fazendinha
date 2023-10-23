@@ -37,6 +37,7 @@ private:
 
 public:
     Vector * speed;                     // velocidade e direção
+    int vidas = 5;
 
     Player();                           // construtor
     ~Player();                          // destrutor

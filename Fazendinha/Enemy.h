@@ -2,6 +2,7 @@
 
 #include "Object.h"
 #include "Animation.h"
+#include "Vector.h"
 
 enum EnemyState {
 	ENEMYLEFT,
@@ -15,7 +16,10 @@ class Enemy : public Object {
 private:
 	TileSet* tileset;
 	Animation* animation;
-	uint state = ENEMYLEFT;
+	Vector speed;
+	uint state = ENEMYDOWN;
+	bool hit = true;
+	Timer timer;
 
 public:
 	Enemy();
@@ -28,5 +32,5 @@ public:
 };
 
 inline void Enemy::Draw() {
-	animation->Draw(x, y, z, scale);
+	animation->Draw(x, y, z, scale, rotation);
 }
