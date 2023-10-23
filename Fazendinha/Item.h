@@ -18,11 +18,12 @@ class Item : public Object {
 private:
 
 	Sprite* sprite;
-	uint itemType;
 	bool moving = false;
 
 public:
+	uint itemType;
 	InventorySpace* space;
+	bool considerado = false;
 
 	Item(uint itType, InventorySpace* spc);
 	~Item();

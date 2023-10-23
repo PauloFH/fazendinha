@@ -43,7 +43,7 @@ void Mouse::OnCollision(Object * obj) {
 	if (carrying) {
 		if (obj->Type() == SPACE) {
 			InventorySpace* spc = dynamic_cast<InventorySpace*>(obj);
-			if (!spc->ocupado) {
+			if (!spc->ocupado || spc->itemType == itemHolded->itemType) {
 				itemHolded->space = spc;
 			}
 		}

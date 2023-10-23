@@ -24,7 +24,7 @@
 
 // ------------------------------------------------------------------------------
 
-enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE};
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY};
 
 // ------------------------------------------------------------------------------
 
@@ -51,6 +51,7 @@ public:
     static uint dayState;
     static int dayCount;
     static Mouse * mouse;
+    static Font * text;
 
     void Init();                    // inicialização
     void Update();                  // atualização
