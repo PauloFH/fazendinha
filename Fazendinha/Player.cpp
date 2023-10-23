@@ -35,8 +35,8 @@ Player::Player()
     emitter.minSpeed = 50.0f;                   // velocidade mínima das partículas
     emitter.maxSpeed = 100.0f;                  // velocidade máxima das partículas
     emitter.color.r = 1.0f;                     // componente Red da partícula 
-    emitter.color.g = 1.0f;                     // componente Green da partícula 
-    emitter.color.b = 1.0f;                     // componente Blue da partícula 
+    emitter.color.g = 0.0f;                     // componente Green da partícula 
+    emitter.color.b = 0.0f;                     // componente Blue da partícula 
     emitter.color.a = 1.0f;                     // transparência da partícula
 
     // cria sistema de partículas

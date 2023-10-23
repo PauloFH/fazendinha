@@ -1,7 +1,7 @@
 #include "Ground.h"
 #include "Fazendinha.h"
 
-Ground::Ground(int posX, int posY) {
+Ground::Ground(int posX, int posY, bool toPut) {
 
 	normal = new Sprite("Resources/solo1.png");
 	molhado = new Sprite("Resources/solo1Molhado.png");
@@ -11,7 +11,12 @@ Ground::Ground(int posX, int posY) {
 	MoveTo(posX, posY);
 	BBox(new Rect(-8, -8, 7, 7));
 
-	type = GROUND;
+	if (toPut) {
+		type = GRASS;
+	}
+	else {
+		type = GROUND;
+	}
 
 	Scale(2.0);
 
@@ -21,7 +26,7 @@ Ground::~Ground() {
 }
 
 void Ground::Update() {
-	
+
 }
 
 void Ground::Draw() {
@@ -32,8 +37,7 @@ void Ground::Draw() {
 	if (type == GROUND) {
 		sprite->Draw(x, y, Layer::MIDDLE);
 	}*/
-
-	sprite->Draw(x, y, Layer::LOWER, scale);
+	sprite->Draw(x, y, Layer::LOWER, scale*2);
 }
 
 void Ground::OnCollision(Object* obj) {
@@ -42,14 +46,4 @@ void Ground::OnCollision(Object* obj) {
 		obj->MoveTo(x, y);
 	}
 	*/
-
-	/*if (obj->Type() == GROUND) {
-		MoveTo(obj->X() + 16, obj->Y());
-	}*/
-
-	if (!ocupado && obj->Type() == PLANTATION) {
-		ocupado = true;
-		obj->MoveTo(x - 1, y - 15, Layer::LOWER - 0.01f);
-	}
-
 }

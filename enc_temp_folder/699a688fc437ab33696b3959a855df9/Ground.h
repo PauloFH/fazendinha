@@ -11,14 +11,13 @@ private:
 	int posX;
 	int posY;
 	bool ocupado = false;
-	bool isMolhado = false;
 
 public:
 
 	int Height();
 	int Width();
 
-	Ground( int posX, int posY);
+	Ground( int posX, int posY, bool toPut = false);
 	~Ground();
 
 	void Update();
