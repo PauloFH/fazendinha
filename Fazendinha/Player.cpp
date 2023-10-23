@@ -12,6 +12,7 @@
 #include "Player.h" 
 #include "Missile.h"
 #include "Fazendinha.h"
+#include "Tool.h"
 
 // -------------------------------------------------------------------------------
 
@@ -25,23 +26,6 @@ Player::Player()
    // MoveTo(game->CenterX(), game->CenterY());
     type = PLAYER;
 
-    // configuração do gerador de partículas
-    Generator emitter;
-    emitter.imgFile = "Resources/Spark.png";    // arquivo de imagem
-    emitter.angle = 270.0f;                     // ângulo base do emissor
-    emitter.spread = 50;                        // espalhamento em graus
-    emitter.lifetime = 0.3f;                    // tempo de vida em segundos
-    emitter.frequency = 0.010f;                 // tempo entre geração de novas partículas
-    emitter.percentToDim = 0.6f;                // desaparece após 60% da vida
-    emitter.minSpeed = 50.0f;                   // velocidade mínima das partículas
-    emitter.maxSpeed = 100.0f;                  // velocidade máxima das partículas
-    emitter.color.r = 1.0f;                     // componente Red da partícula 
-    emitter.color.g = 0.0f;                     // componente Green da partícula 
-    emitter.color.b = 0.0f;                     // componente Blue da partícula 
-    emitter.color.a = 1.0f;                     // transparência da partícula
-
-    // cria sistema de partículas
-    tail = new Particles(emitter);
 }
 
 // -------------------------------------------------------------------------------
@@ -50,7 +34,6 @@ Player::~Player()
 {
     delete sprite;
     delete speed;
-    delete tail;
 }
 
 // -------------------------------------------------------------------------------
@@ -108,9 +91,9 @@ void Player::Update()
     }
 
     // atualiza calda do jogador
-    tail->Config().angle = speed->Angle() + 180;
+    /*tail->Config().angle = speed->Angle() + 180;
     tail->Generate(x - 10 * cos(speed->Radians()), y + 10 * sin(speed->Radians()));
-    tail->Update(gameTime);
+    tail->Update(gameTime);*/
 
     // restringe a área do jogo
     if (x < 50)
@@ -121,6 +104,23 @@ void Player::Update()
         MoveTo(game->Width() - 50, y);
     if (y > game->Height() - 50)
         MoveTo(x, game->Height() - 50);
+
+    // ----------------------------------------------------------------------------
+    //                          COMEÇO DA LÓGICA
+    // ----------------------------------------------------------------------------
+
+    if (usavel != nullptr) {
+        if (usavel->itemType == ITEMREGADOR) {
+
+            state = TOOL;
+            if (window->KeyPress('R')) {
+                Tool* tool = new Tool();
+                Fazendinha::scene->Add(tool, MOVING);
+                tool->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
+            }
+        }
+    }
+
 }
 
 // ---------------------------------------------------------------------------------
@@ -128,7 +128,6 @@ void Player::Update()
 void Player::Draw()
 {
     sprite->Draw(x, y, Layer::MIDDLE, 1.0f, -speed->Angle() + 90.0f);
-    tail->Draw(Layer::LOWER, 1.0f);
 }
 
 

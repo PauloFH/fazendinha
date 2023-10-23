@@ -8,11 +8,11 @@ class BauSpaces : public Object {
 
 private:
 	Sprite* sprite;
-	InventorySpace** spaces;
 	int varX;
 	int varY;	
 
 public:
+	InventorySpace** spaces;
 	bool isOpen = false;
 
 	BauSpaces();

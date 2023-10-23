@@ -4,6 +4,7 @@
 Ground::Ground(int posX, int posY) {
 
 	normal = new Sprite("Resources/solo1.png");
+	arado = new Sprite("Resources/solo1Arado.png");
 	molhado = new Sprite("Resources/solo1Molhado.png");
 
 	sprite = normal;
@@ -21,7 +22,12 @@ Ground::~Ground() {
 }
 
 void Ground::Update() {
-	
+	if (isMolhado) {
+		sprite = molhado;
+	}
+	else {
+		sprite = normal;
+	}
 }
 
 void Ground::Draw() {

@@ -39,5 +39,5 @@ public:
 };
 
 inline void Animal::Draw() {
-	animation->Draw(x, y, Layer::MIDDLE, scale);
+	animation->Draw(x, y, Layer::MIDDLE, scale, rotation);
 }

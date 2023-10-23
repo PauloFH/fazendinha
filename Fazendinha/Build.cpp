@@ -2,7 +2,7 @@
 /**********************************************************************************
 // Build
 //
-// Descrição:   Objeto para setar construções com interação de entrada
+// DescriÃ§Ã£o:   Objeto para setar construÃ§Ãµes com interaÃ§Ã£o de entrada
 //
 **********************************************************************************/
 

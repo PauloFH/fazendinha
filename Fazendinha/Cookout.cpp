@@ -15,7 +15,7 @@ void Cookout::Update() {
 	if (hit) {
 		if (window->KeyPress(VK_RBUTTON)) {
 			hit = false;
-			//craftMenu->~CraftMenu();
+			craftMenu->~CraftMenu();
 		}
 	}
 }

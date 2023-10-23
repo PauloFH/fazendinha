@@ -18,26 +18,26 @@
 #include "Sprite.h"                        // desenho de sprites
 #include "Vector.h"                        // representação de vetores
 #include "Particles.h"                    // sistema de partículas
+#include "Item.h"
 
 // ---------------------------------------------------------------------------------
 
 enum playerState {
     NORMAL,
     HOLDING,
-    REGADOR,
-    ARADOR
+    TOOL
 };
 
 class Player : public Object
 {
 private:
     Sprite * sprite;                    // sprite do objeto
-    Particles * tail;                   // calda do jogador
-    uint playerState = NORMAL;
+    uint state = NORMAL;
 
 public:
     Vector * speed;                     // velocidade e direção
     int vidas = 5;
+    Item * usavel;
 
     Player();                           // construtor
     ~Player();                          // destrutor
@@ -51,7 +51,7 @@ public:
 // ---------------------------------------------------------------------------------
 
 inline uint Player::PlayerState() {
-    return playerState;
+    return state;
 }
 
 #endif

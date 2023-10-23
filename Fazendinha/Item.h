@@ -10,7 +10,8 @@ enum ItemTypes {
 	ITEMCOUVEFLOR,
 	SEEDCOUVEFLOR,
 	ITEMMELAO,
-	SEEDMELAO
+	SEEDMELAO, 
+	ITEMREGADOR
 };
 
 class Item : public Object {
@@ -24,8 +25,9 @@ public:
 	uint itemType;
 	InventorySpace* space;
 	bool considerado = false;
+	bool pego = false;
 
-	Item(uint itType, InventorySpace* spc);
+	Item(uint itType = 0, InventorySpace* spc = nullptr);
 	~Item();
 
 	void Draw();

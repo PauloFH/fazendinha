@@ -21,11 +21,12 @@ Animal::Animal(uint anType = 0) {
 
 		BBox(new Rect(-8, -8, 7, 7));
 
+		Scale(1.8);
 	}
 	else if (animalType == COW) {
-		tileset = new TileSet("Resources/vaca.png", 32, 32, 4, 20);
+		tileset = new TileSet("Resources/vaca.png", 32, 32, 4, 24);
 
-		uint left[4] = { 0, 1, 2, 3 };
+		uint left[4] = { 23, 22, 21, 20 };
 		uint right[4] = { 4, 5, 6, 7 };
 		uint up[4] = { 8, 9, 10, 11 };
 		uint down[4] = { 0, 1, 2, 3 };
@@ -38,9 +39,8 @@ Animal::Animal(uint anType = 0) {
 
 		BBox(new Rect(-16, -16, 15, 15));
 
+		Scale(2.0);
 	}
-
-	Scale(1.8);
 	vel = 50;
 	timer.Start();
 
@@ -68,6 +68,9 @@ void Animal::Update() {
 	if (movable) {
 		if (state == LEFT) {
 			Translate(-vel * gameTime, 0);
+			if (animalType == COW) {
+				
+			}
 		}
 		else if (state == RIGHT) {
 			Translate(vel * gameTime, 0);
@@ -89,7 +92,9 @@ void Animal::Update() {
 
 	}
 	else {
-		state = DOWN;
+		if (animalType == CHICKEN) {
+			state = DOWN;
+		}
 		animation->Frame(0);
 	}
 

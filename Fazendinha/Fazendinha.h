@@ -21,11 +21,12 @@
 #include "Background.h"
 #include "Player.h"
 #include "Mouse.h"
+#include "Inventary.h"
 
 // ------------------------------------------------------------------------------
 
 
-enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY, FENCE, SHOP_BUILD, COOKOUT};
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY, FENCE, SHOP_BUILD, REGADOR, ARADOR, COOKOUT};
 
 // ------------------------------------------------------------------------------
 
@@ -53,6 +54,7 @@ public:
     static int dayCount;
     static Mouse * mouse;
     static Font * text;
+    static Inventary * inventary;
 
     void Init();                    // inicialização
     void Update();                  // atualização

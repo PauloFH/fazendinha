@@ -18,11 +18,11 @@
 #include "Ground.h"
 #include "Build.h"
 #include "Animal.h"
-#include "Inventary.h"
 #include "Item.h"
 #include "Bau.h"
 #include "Enemy.h"
 #include "Cookout.h"
+#include <sstream>
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
@@ -34,6 +34,7 @@ uint Fazendinha::dayState = DAY;
 int Fazendinha::dayCount = 1;
 Mouse * Fazendinha::mouse = nullptr;
 Font* Fazendinha::text = nullptr;
+Inventary* Fazendinha::inventary = nullptr;
 
 // ------------------------------------------------------------------------------
 
@@ -90,16 +91,16 @@ void Fazendinha::Init()
     mouse = new Mouse();
     scene->Add(mouse, MOVING);
 
-    Inventary* invent = new Inventary();
-    scene->Add(invent, STATIC);
+    inventary = new Inventary();
+    scene->Add(inventary, STATIC);
 
-    Item* chirivia = new Item(0, invent->spaces[4]);
+    Item* chirivia = new Item(0, inventary->spaces[4]);
     scene->Add(chirivia, MOVING);
 
-    Item* chirivia2 = new Item(0, invent->spaces[2]);
+    Item* chirivia2 = new Item(0, inventary->spaces[2]);
     scene->Add(chirivia2, MOVING);
 
-    Item* seedChirivia = new Item(1, invent->spaces[5]);
+    Item* seedChirivia = new Item(1, inventary->spaces[5]);
     scene->Add(seedChirivia, MOVING);
 
     Filter* filter = new Filter();
@@ -108,11 +109,18 @@ void Fazendinha::Init()
     Plantation* plant = new Plantation(0);
     scene->Add(plant, STATIC);
     
-    Animal* anim = new Animal(0);
+    Animal* anim = new Animal(CHICKEN);
     scene->Add(anim, MOVING);
+
+    Animal* anim2 = new Animal(COW);
+    scene->Add(anim2, MOVING);
+    anim2->MoveTo(anim2->X(), anim->Y() + 100);
 
     Bau* bau = new Bau();
     scene->Add(bau, STATIC);
+
+    Item* regador = new Item(ITEMREGADOR, bau->bauOpened->spaces[2]);
+    scene->Add(regador, MOVING);
 
     Enemy* bug = new Enemy();
     scene->Add(bug, MOVING);
@@ -192,6 +200,36 @@ void Fazendinha::Update()
         Ground* ground = new Ground(window->MouseX() + game->viewport.left, window->MouseY() + game->viewport.top);
         scene->Add(ground, MOVING);
     }
+
+  
+    for (int i = 0; i < 12; i++) {
+
+        Item* it = dynamic_cast<Item*>(inventary->spaces[i]->objItem);
+
+        if (it != nullptr) {
+
+            if (!it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
+                if (inventary->spaces[i]->ocupado) {
+
+                    std::stringstream text;
+
+                    text.str("");
+
+                    text << inventary->spaces[i]->chave << ".\n";
+                    OutputDebugString(text.str().c_str());
+
+                    it->pego = true;
+                    player->usavel = it;
+                    //it->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
+
+                }
+            }
+
+            if (it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
+                it->pego = false;
+            }
+        }
+    }  
 
 } 
 
