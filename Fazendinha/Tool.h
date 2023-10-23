@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Animation.h"
 #include "Timer.h"
+#include "Particles.h"
 
 enum ToolStates {
 	TOOLFRONT,
@@ -16,6 +17,7 @@ private:
 	Animation* animation;
 	uint state = TOOLFRONT;
 	Timer timer;
+	Particles* agua;
 
 public:
 	Tool();
@@ -27,6 +29,3 @@ public:
 
 };
 
-inline void Tool::Draw() {
-	animation->Draw(x, y, z, scale);
-}

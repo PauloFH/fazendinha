@@ -32,7 +32,6 @@ class Player : public Object
 {
 private:
     Sprite * sprite;                    // sprite do objeto
-    Particles * tail;                   // calda do jogador
     uint state = NORMAL;
 
 public:
