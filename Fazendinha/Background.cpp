@@ -29,7 +29,6 @@ Background::Background(string filename)
     spriteData.color = Color(1, 1, 1, 1);
     spriteData.texture = image->View();
 }
-
 // -------------------------------------------------------------------------------
 
 Background::~Background()

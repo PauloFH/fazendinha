@@ -237,6 +237,7 @@
     <ClCompile Include="Build.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Fence.cpp" />
     <ClCompile Include="Filter.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="Build.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="Fence.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="Font.h" />
@@ -285,6 +287,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sound.h" />
@@ -342,6 +345,13 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Icon.ico" />
+    <Image Include="Resources\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cursor.cur" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

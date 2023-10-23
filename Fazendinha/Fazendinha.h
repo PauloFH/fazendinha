@@ -23,7 +23,7 @@
 
 // ------------------------------------------------------------------------------
 
-enum ObjectIds { PLAYER, GROUND, GRASS, HOME,COMMUNITY, MISSILE};
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME,COMMUNITY, MISSILE, FENCE, SHOP_BUILD};
 
 // ------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ class Fazendinha : public Game
 {
 private:
     Background * backg = nullptr;   // pano de fundo
-    bool viewBBox = false;          // visualização das bouding boxes
+    bool viewBBox = true;          // visualização das bouding boxes
 
 public:
     static Player * player;         // nave controlada pela jogador

@@ -1,7 +1,7 @@
 #include "Ground.h"
 #include "Fazendinha.h"
 
-Ground::Ground(int posX, int posY) {
+Ground::Ground(int posX, int posY, bool toPut) {
 
 	normal = new Sprite("Resources/solo1.png");
 	molhado = new Sprite("Resources/solo1Molhado.png");
@@ -11,7 +11,12 @@ Ground::Ground(int posX, int posY) {
 	MoveTo(posX, posY);
 	BBox(new Rect(-8, -8, 7, 7));
 
-
+	if (toPut) {
+		type = GRASS;
+	}
+	else {
+		type = GROUND;
+	}
 
 	Scale(2.0);
 

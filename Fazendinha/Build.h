@@ -21,7 +21,7 @@ private:
 	int posY;
 	bool ocupado = false;
 public:
-	Build(int posX, int posY, Sprite * s, UINT id);
+	Build(int posX, int posY, UINT id, Sprite * s);
 	~Build();
 	void Update();
 	void Draw();

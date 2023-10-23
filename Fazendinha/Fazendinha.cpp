@@ -16,6 +16,7 @@
 #include "Filter.h"
 #include "Plantation.h"
 #include "Ground.h"
+#include "Build.h"
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
@@ -43,7 +44,7 @@ void Fazendinha::Init()
     audio->Volume(START, 0.8f);
 
     // carrega/incializa objetos
-    backg   = new Background("Resources/map_base.png");
+    backg   = new Background("Resources/grass.png");
     player  = new Player();
     scene   = new Scene();
 
@@ -61,14 +62,16 @@ void Fazendinha::Init()
     float dify = (game->Height() - window->Height()) / 2.0f;
 
     // inicializa viewport para o centro do mundo
-    viewport.left = 0.0f + difx;
+    viewport.left = 10.0f + difx;
     viewport.right = viewport.left + window->Width();
-    viewport.top = 0.0f + dify;
+    viewport.top = 10.0f + dify;
     viewport.bottom = viewport.top + window->Height();
 
 
     // Carregamento das coisas do jogo em si
-
+    scene->Add(new Build(3500, 300, HOME, new Sprite("Resources/home.png")), STATIC);
+    scene->Add(new Build(1500, 300, SHOP_BUILD, new Sprite("Resources/shop_day.png")), STATIC);
+    scene->Add(new Build(500, 300, COMMUNITY, new Sprite("Resources/closed.png")), STATIC);
     // Aqui já começa a configuração do jogo em si
     timer.Start();
 
@@ -155,18 +158,18 @@ void Fazendinha::Update()
 
 void Fazendinha::Draw()
 {
-    // desenha pano de fundo
     backg->Draw(viewport);
+
+    scene->DrawBBox();
+    // desenha pano de fundo
+
 
     // desenha a cena
     scene->Draw();
 
-    // desenha painel de informações
-    if (viewHUD)
-
     // desenha bounding box
-    if (viewBBox)
-        scene->DrawBBox();
+       
+
 }
 
 // ------------------------------------------------------------------------------
@@ -203,7 +206,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     Game * game = new Fazendinha();
 
     // configura o jogo
-    game->Size(4840, 3160);
+    game->Size(4096, 2048);
     
     // inicia execução
     engine->Start(game);
