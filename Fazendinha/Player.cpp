@@ -12,6 +12,7 @@
 #include "Player.h" 
 #include "Missile.h"
 #include "Fazendinha.h"
+#include "Tool.h"
 
 // -------------------------------------------------------------------------------
 
@@ -120,6 +121,23 @@ void Player::Update()
         MoveTo(game->Width() - 50, y);
     if (y > game->Height() - 50)
         MoveTo(x, game->Height() - 50);
+
+    // ----------------------------------------------------------------------------
+    //                          COMEÇO DA LÓGICA
+    // ----------------------------------------------------------------------------
+
+    if (usavel != nullptr) {
+        if (usavel->itemType == ITEMREGADOR) {
+
+            state = TOOL;
+            if (window->KeyPress('R')) {
+                Tool* tool = new Tool();
+                Fazendinha::scene->Add(tool, MOVING);
+                tool->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
+            }
+        }
+    }
+
 }
 
 // ---------------------------------------------------------------------------------

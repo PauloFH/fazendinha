@@ -8,12 +8,25 @@ Inventary::Inventary() {
 	Scale(0.5);
 
 	for (int i = 0; i < 12; i++) {
-		spaces[i] = new InventorySpace(); // Substitua `i` pelo valor desejado
+		spaces[i] = new InventorySpace();
 	}
 
 	for (int i = 0; i < 12; i++) {
 		Fazendinha::scene->Add(spaces[i], STATIC);
 	}
+
+	spaces[0]->chave = '1';
+	spaces[1]->chave = '2';
+	spaces[2]->chave = '3';
+	spaces[3]->chave = '4';
+	spaces[4]->chave = '5';
+	spaces[5]->chave = '6';
+	spaces[6]->chave = '7';
+	spaces[7]->chave = '8';
+	spaces[8]->chave = '9';
+	spaces[9]->chave = '0';
+	spaces[10]->chave = 'K';
+	spaces[11]->chave = 'L';
 
 }
 
@@ -39,6 +52,7 @@ void Inventary::Update() {
 	spaces[9]->MoveTo(game->viewport.left + 646, game->viewport.top + window->Height() - 27);
 	spaces[10]->MoveTo(game->viewport.left + 692, game->viewport.top + window->Height() - 27);
 	spaces[11]->MoveTo(game->viewport.left + 738, game->viewport.top + window->Height() - 27);
+
 }
 
 void Inventary::OnCollision(Object* obj) {

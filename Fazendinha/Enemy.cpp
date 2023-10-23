@@ -37,17 +37,13 @@ Enemy::~Enemy() {
 
 void Enemy::Update() {
 
-	// Calcula as diferenças entre as coordenadas X e Y do inimigo e do jogador
 	float deltaX = Fazendinha::player->X() - x;
 	float deltaY = Fazendinha::player->Y() - y;
 
-	// Calcula os valores absolutos das diferenças
 	float absDeltaX = fabs(deltaX);
 	float absDeltaY = fabs(deltaY);
 
-	// Compara os valores absolutos e define o estado com base na maior diferença
 	if (absDeltaX > absDeltaY) {
-		// A diferença em X é maior, vire na direção X
 		if (deltaX > 0) {
 			state = ENEMYRIGHT;
 		}
@@ -56,7 +52,6 @@ void Enemy::Update() {
 		}
 	}
 	else {
-		// A diferença em Y é maior, vire na direção Y
 		if (deltaY > 0) {
 			state = ENEMYDOWN;
 		}
@@ -71,7 +66,6 @@ void Enemy::Update() {
 	speed.RotateTo(Line::Angle(Point(x, y), Point(Fazendinha::player->X(), Fazendinha::player->Y())));
 	//RotateTo(Line::Angle(Point(x, y), Point(Fazendinha::player->X(), Fazendinha::player->Y())));
 
-	// movimenta objeto pelo seu vetor velocidade
 	Translate(speed.XComponent() * 50.0f * gameTime, -speed.YComponent() * 50.0f * gameTime);
 
 	if (timer.Elapsed(2.0f)) {

@@ -20,8 +20,10 @@ Build::Build(int posx, int posy ,UINT id_, Sprite * s) {
 		Scale(2.0f);
 	}
 	if (id == COMMUNITY) {
-		BBox(new Rect(-150, 50, 100, -100));
-		
+		BBox(new Rect(-150, 50, 100, -100));	
+	}
+	if (id == SHOP_BUILD) {
+		Scale(2.0f);
 	}
 	MoveTo(posX, posY);
 }
