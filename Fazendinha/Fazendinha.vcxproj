@@ -231,9 +231,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animal.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Bau.cpp" />
+    <ClCompile Include="BauSpaces.cpp" />
     <ClCompile Include="Build.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -245,7 +248,11 @@
     <ClCompile Include="Fazendinha.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Inventary.cpp" />
+    <ClCompile Include="InventorySpace.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Particles.cpp" />
     <ClCompile Include="Plantation.cpp" />
@@ -263,9 +270,12 @@
     <ClCompile Include="WorldBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animal.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Bau.h" />
+    <ClInclude Include="BauSpaces.h" />
     <ClInclude Include="Blue.h" />
     <ClInclude Include="Build.h" />
     <ClInclude Include="Controller.h" />
@@ -278,7 +288,10 @@
     <ClInclude Include="Fazendinha.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="Inventary.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Particles.h" />
     <ClInclude Include="Plantation.h" />
@@ -288,6 +301,7 @@
     <ClInclude Include="Resources.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="InventorySpace.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />

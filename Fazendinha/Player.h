@@ -21,22 +21,36 @@
 
 // ---------------------------------------------------------------------------------
 
+enum playerState {
+    NORMAL,
+    HOLDING,
+    REGADOR,
+    ARADOR
+};
+
 class Player : public Object
 {
 private:
     Sprite * sprite;                    // sprite do objeto
     Particles * tail;                   // calda do jogador
+    uint playerState = NORMAL;
 
 public:
     Vector * speed;                     // velocidade e direção
 
     Player();                           // construtor
     ~Player();                          // destrutor
+
+    uint PlayerState();
     
     void Move(Vector && v);             // movimenta jogador
     void Update();                      // atualização
     void Draw();                        // desenho
 }; 
 // ---------------------------------------------------------------------------------
+
+inline uint Player::PlayerState() {
+    return playerState;
+}
 
 #endif

@@ -11,12 +11,7 @@ Ground::Ground(int posX, int posY, bool toPut) {
 	MoveTo(posX, posY);
 	BBox(new Rect(-8, -8, 7, 7));
 
-	if (toPut) {
-		type = GRASS;
-	}
-	else {
-		type = GROUND;
-	}
+	type = GROUND;
 
 	Scale(2.0);
 
@@ -26,7 +21,7 @@ Ground::~Ground() {
 }
 
 void Ground::Update() {
-
+	
 }
 
 void Ground::Draw() {
@@ -37,7 +32,7 @@ void Ground::Draw() {
 	if (type == GROUND) {
 		sprite->Draw(x, y, Layer::MIDDLE);
 	}*/
-	sprite->Draw(x, y, Layer::BACK, scale);
+	sprite->Draw(x, y, Layer::LOWER, scale);
 }
 
 void Ground::OnCollision(Object* obj) {
@@ -46,4 +41,14 @@ void Ground::OnCollision(Object* obj) {
 		obj->MoveTo(x, y);
 	}
 	*/
+
+	/*if (obj->Type() == GROUND) {
+		MoveTo(obj->X() + 16, obj->Y());
+	}*/
+
+	if (!ocupado && obj->Type() == PLANTATION) {
+		ocupado = true;
+		obj->MoveTo(x - 1, y - 15, Layer::LOWER - 0.01f);
+	}
+
 }
