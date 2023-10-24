@@ -22,7 +22,9 @@ enum ItemTypes {
 	SEEDABACAXI,
 	SEEDBATATA,
 	ITEMREGADOR,
-	ITEMARADOR
+	ITEMARADOR,
+	OVO,
+	LEITE
 };
 
 class Item : public Object {

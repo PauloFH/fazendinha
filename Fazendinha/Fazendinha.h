@@ -26,7 +26,7 @@
 // ------------------------------------------------------------------------------
 
 
-enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY, FENCE, SHOP_BUILD, REGADOR, ARADOR};
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY, FENCE, SHOP_BUILD, REGADOR, ARADOR, VENDA};
 
 // ------------------------------------------------------------------------------
 

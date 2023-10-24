@@ -26,6 +26,7 @@ private:
 	int vel = 0;
 	bool movable = false;
 	uint nextState = LEFT;
+	Timer recursoTimer;
 
 public:
 

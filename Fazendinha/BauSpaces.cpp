@@ -35,6 +35,7 @@ BauSpaces::~BauSpaces() {
 void BauSpaces::Update() {
 
 	if (isOpen) {
+		Fazendinha::player->vel = 0;
 		for (int i = 0; i <= 36; i++) {
 			if (i == 36) {
 				varX = 232;
@@ -51,6 +52,7 @@ void BauSpaces::Update() {
 		}
 	}
 	else {
+		Fazendinha::player->vel = 250;
 		for (int i = 0; i <= 36; i++) {
 			if (i == 36) {
 				varX = 100000;

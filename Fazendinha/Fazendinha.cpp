@@ -22,6 +22,7 @@
 #include "Bau.h"
 #include "Enemy.h"
 #include <sstream>
+#include "Venda.h"
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
@@ -129,13 +130,22 @@ void Fazendinha::Init()
 
     Bau* bau = new Bau();
     scene->Add(bau, STATIC);
+    bau->MoveTo(2400, 540);
 
-    Item* regador = new Item(ITEMREGADOR, bau->bauOpened->spaces[2]);
+    /*Bau* bau2 = new Bau();
+    scene->Add(bau2, STATIC);
+    bau2->MoveTo(2460, 540);*/
+
+    Item* regador = new Item(ITEMREGADOR, bau->bauOpened->spaces[0]);
     scene->Add(regador, MOVING);
 
-    Item* arador = new Item(ITEMARADOR, bau->bauOpened->spaces[7]);
+    Item* arador = new Item(ITEMARADOR, bau->bauOpened->spaces[1]);
     scene->Add(arador, MOVING);
 
+    Venda* venda = new Venda();
+    scene->Add(venda, STATIC);
+    venda->MoveTo(2460, 540);
+    
     Enemy* bug = new Enemy();
     scene->Add(bug, MOVING);
 
