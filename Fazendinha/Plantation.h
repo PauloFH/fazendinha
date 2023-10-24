@@ -34,6 +34,7 @@ private:
 public:
 	Object* objGround;
 	bool regada = false;
+	bool cresceu = false;
 
 	Plantation(uint plant);
 	~Plantation();

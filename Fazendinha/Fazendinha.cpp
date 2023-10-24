@@ -38,6 +38,7 @@ Inventary* Fazendinha::inventary = nullptr;
 Controller* Fazendinha::gamepad = nullptr;
 bool     Fazendinha::controllerOn = false;
 bool Fazendinha::xboxOn = false;
+bool Fazendinha::crescerPlantas = false;
 // ------------------------------------------------------------------------------
 
 void Fazendinha::Init()
@@ -231,15 +232,18 @@ void Fazendinha::Update()
     else {
 
     // ativa ou desativa a bounding box
-    if (window->KeyPress('B') || Fazendinha::gamepad->XboxButton(ButtonStart)) {
+    if (window->KeyPress('B') || Fazendinha::gamepad->XboxButton(ButtonA)) {
+        //viewBBox = !viewBBox;
         Filter::activated = !Filter::activated;
     }
 
         if (Filter::activated) {
             dayState = NIGHT;
+            crescerPlantas = false;
         }
         else {
             dayState = DAY;
+            crescerPlantas = true;
         }
 
         // ativa ou desativa o heads up display

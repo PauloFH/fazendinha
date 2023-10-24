@@ -62,7 +62,7 @@ void Animal::Update() {
 	RandI newState{ 0, 3 };
 
 
-	if (animalType == CHICKEN && recursoTimer.Elapsed(600.0f)) {
+	if (animalType == CHICKEN && recursoTimer.Elapsed(30.0f)) {
 		InventorySpace* tst = new InventorySpace();
 		tst->MoveTo(-15000, -15000);
 		Item* ovo = new Item(OVO, tst);
@@ -71,7 +71,7 @@ void Animal::Update() {
 		recursoTimer.Reset();
 	}
 
-	if (animalType == COW && recursoTimer.Elapsed(600.0f)) {
+	if (animalType == COW && recursoTimer.Elapsed(60.0f)) {
 		InventorySpace* tst = new InventorySpace();
 		tst->MoveTo(-15000, -15000);
 		Item* leite = new Item(LEITE, tst);

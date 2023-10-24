@@ -51,6 +51,7 @@ private:
 
     int tempo = 800;
 public:
+    static bool crescerPlantas;
     static Controller* gamepad;
     static Player * player;         // nave controlada pela jogador
     static Audio * audio;           // sitema de áudio
