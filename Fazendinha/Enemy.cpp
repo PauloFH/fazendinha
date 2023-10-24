@@ -60,17 +60,32 @@ void Enemy::Update() {
 		}
 	}
 
-	animation->Select(state);
-	animation->NextFrame();
-
 	speed.RotateTo(Line::Angle(Point(x, y), Point(Fazendinha::player->X(), Fazendinha::player->Y())));
 	//RotateTo(Line::Angle(Point(x, y), Point(Fazendinha::player->X(), Fazendinha::player->Y())));
 
-	Translate(speed.XComponent() * 50.0f * gameTime, -speed.YComponent() * 50.0f * gameTime);
+	if (Fazendinha::dayState == NIGHT) {
+
+		Translate(speed.XComponent() * 50.0f * gameTime, -speed.YComponent() * 50.0f * gameTime);
+	}
+	else {
+		Translate(-speed.XComponent() * 50.0f * gameTime, speed.YComponent() * 50.0f * gameTime);
+	}
 
 	if (timer.Elapsed(2.0f)) {
 		hit = true;
 	}
+
+	if (x < -50)
+		MoveTo(-50, y);
+	if (y < -50)
+		MoveTo(x, -50);
+	if (x > game->Width() + 50)
+		MoveTo(game->Width() + 50, y);
+	if (y > game->Height() + 50)
+		MoveTo(x, game->Height() + 50);
+
+	animation->Select(state);
+	animation->NextFrame();
 
 }
 

@@ -7,7 +7,8 @@
 
 enum ToolStates {
 	TOOLFRONT,
-	TOOLSIDE
+	TOOLSIDE,
+	TOOLANOTHERSIDE
 };
 
 class Tool : public Object {
@@ -15,11 +16,12 @@ class Tool : public Object {
 private:
 	TileSet* tileset;
 	Animation* animation;
-	uint state = TOOLFRONT;
 	Timer timer;
 	Particles* agua;
 
 public:
+	uint state = TOOLFRONT;
+
 	Tool(uint tipo = 15);
 	~Tool();
 

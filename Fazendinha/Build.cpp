@@ -8,6 +8,7 @@
 
 #include "Build.h"
 #include "Fazendinha.h"
+#include "BauSpaces.h"
 
 Build::Build(int posx, int posy ,UINT id_, Sprite * s) {
 
@@ -61,9 +62,31 @@ Build::~Build(){
 
 void Build::Update(){
 
-}
- void Build::OnCollision(Object* obj){
+	if (opened) {
+		if (window->KeyPress(VK_RBUTTON)) {
+			opened = false;
+			shopping->isOpen = false;
+			shopping->MoveTo(200000, 200000);
+		}
+	}
 
+}
+
+
+ void Build::OnCollision(Object* obj){
+	 if (obj->Type() == MOUSE && this->type == SHOP_BUILD) {
+		 if (!opened && window->KeyPress(VK_LBUTTON)) {
+			 shopping = new BauSpaces();
+			 shopping->isOpen = true;
+			 Fazendinha::scene->Add(shopping, STATIC);
+			 shopping->MoveTo(game->viewport.left + window->Width() / 2, game->viewport.top + window->Height() / 2);
+			 for (int i = 0; i < 99; i++) {
+				 itemToAdd = new Item(SEEDCHIRIVIA, shopping->spaces[0]);
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+			 opened = true;
+		 }
+	 }
 }
 void Build::Draw(){
 

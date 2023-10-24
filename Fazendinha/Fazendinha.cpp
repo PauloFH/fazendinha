@@ -60,7 +60,7 @@ void Fazendinha::Init()
     // cria o painel de informações
     WorldBuilder* builder = new WorldBuilder("Resources/map.png");
     // adiciona objetos na cena (sem colisão)
-    scene->Add(player, STATIC);
+    scene->Add(player, MOVING);
 
     // ----------------------
     // inicializa a viewport
@@ -78,7 +78,7 @@ void Fazendinha::Init()
 
 
     // Carregamento das coisas do jogo em si
-    scene->Add(new Build(3500, 300, HOME, new Sprite("Resources/home.png")), STATIC);
+    scene->Add(new Build(2230, 400, HOME, new Sprite("Resources/home.png")), STATIC);
     scene->Add(new Build(1500, 300, SHOP_BUILD, new Sprite("Resources/shop_day.png")), STATIC);
     scene->Add(new Build(500, 300, COMMUNITY, new Sprite("Resources/closed.png")), STATIC);
     // Aqui já começa a configuração do jogo em si
@@ -149,6 +149,13 @@ void Fazendinha::Update()
     if (window->KeyPress('B')) {
         viewBBox = !viewBBox;
         Filter::activated = !Filter::activated;
+    }
+
+    if (Filter::activated) {
+        dayState = NIGHT;
+    }
+    else {
+        dayState = DAY;
     }
        
     // ativa ou desativa o heads up display

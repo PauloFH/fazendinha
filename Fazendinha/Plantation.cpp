@@ -40,7 +40,7 @@ void Plantation::Update() {
 	if (animation->Frame() == numStages - 1) {
 		plantationState = MATURE;
 	}
-	else if(Fazendinha::timer.Elapsed(2.0f) && regada){
+	else if(Fazendinha::timer.Elapsed(600.0f) && regada){
 		animation->NextFrame();
 		regada = false;
 	}
