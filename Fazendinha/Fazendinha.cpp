@@ -216,7 +216,7 @@ void Fazendinha::Update()
 
     }
     // sai com o pressionamento da tecla ESC
-    if (window->KeyDown(VK_ESCAPE))
+    if (window->KeyDown(VK_ESCAPE) || Fazendinha::player->vidas <= 0)
         window->Close();
 
     // atualiza cena e calcula colisões
