@@ -85,7 +85,7 @@ void Fazendinha::Init()
     timer.Start();
 
     text = new Font("Resources/text.png");
-    text->Spacing(65);
+    text->Spacing(64);
 
     mouse = new Mouse();
     scene->Add(mouse, MOVING);

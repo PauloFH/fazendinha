@@ -80,10 +80,47 @@ void Build::Update(){
 			 shopping->isOpen = true;
 			 Fazendinha::scene->Add(shopping, STATIC);
 			 shopping->MoveTo(game->viewport.left + window->Width() / 2, game->viewport.top + window->Height() / 2);
-			 for (int i = 0; i < 99; i++) {
+			 for (int i = 0; i < 10; i++) {
 				 itemToAdd = new Item(SEEDCHIRIVIA, shopping->spaces[0]);
+				 itemToAdd->aVenda = true;
 				 Fazendinha::scene->Add(itemToAdd, MOVING);
 			 }
+			 for (int i = 0; i < 10; i++) {
+				 itemToAdd = new Item(SEEDCOUVEFLOR, shopping->spaces[1]);
+				 itemToAdd->aVenda = true;
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+			 for (int i = 0; i < 10; i++) {
+				 itemToAdd = new Item(SEEDMELAO, shopping->spaces[2]);
+				 itemToAdd->aVenda = true;
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+			 for (int i = 0; i < 10; i++) {
+				 itemToAdd = new Item(SEEDBERINJELA, shopping->spaces[3]);
+				 itemToAdd->aVenda = true;
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+			 for (int i = 0; i < 10; i++) {
+				 itemToAdd = new Item(SEEDABOBORA, shopping->spaces[4]);
+				 itemToAdd->aVenda = true;
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+			 for (int i = 0; i < 10; i++) {
+				 itemToAdd = new Item(SEEDMILHO, shopping->spaces[5]);
+				 itemToAdd->aVenda = true;
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+			 for (int i = 0; i < 10; i++) {
+				 itemToAdd = new Item(SEEDBATATA, shopping->spaces[6]);
+				 itemToAdd->aVenda = true;
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+			 for (int i = 0; i < 10; i++) {
+				 itemToAdd = new Item(SEEDABACAXI, shopping->spaces[7]);
+				 itemToAdd->aVenda = true;
+				 Fazendinha::scene->Add(itemToAdd, MOVING);
+			 }
+
 			 opened = true;
 		 }
 	 }

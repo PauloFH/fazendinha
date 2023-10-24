@@ -1,5 +1,6 @@
 #include "Item.h"
 #include "Fazendinha.h"
+#include <sstream>
 
 Item::Item(uint itType, InventorySpace* spc) {
 	
@@ -81,6 +82,33 @@ Item::~Item() {
 
 void Item::Update() {
 
+	if (aVenda) {
+		if (itemType == SEEDCHIRIVIA) {
+			precoItem = 10;
+		}
+		else if (itemType == SEEDCOUVEFLOR) {
+			precoItem = 15;
+		}
+		else if (itemType == SEEDMELAO) {
+			precoItem = 25;
+		}
+		else if (itemType == SEEDBATATA) {
+			precoItem = 40;
+		}
+		else if (itemType = SEEDBERINJELA) {
+			precoItem = 50;
+		}
+		else if (itemType == SEEDABACAXI) {
+			precoItem = 150;
+		}
+		else if (itemType == SEEDABOBORA) {
+			precoItem = 80;
+		}
+		else if (itemType == SEEDMILHO) {
+			precoItem = 30;
+		}
+	}
+
 	if (pego) {
 		//MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
 		if (!moving && space != nullptr && space->X() != -10000) {
@@ -109,13 +137,23 @@ void Item::Draw() {
 
 void Item::OnCollision(Object* obj) {
 	if (obj->Type() == MOUSE) {
-		if (!pego && !Fazendinha::mouse->carrying && window->KeyPress(VK_LBUTTON)) {
+		if (Fazendinha::player->dinheiro >= precoItem && !pego && !Fazendinha::mouse->carrying && window->KeyPress(VK_LBUTTON)) {
 			Fazendinha::mouse->carrying = true;
 			Fazendinha::mouse->itemHolded = this;
 			if (Fazendinha::mouse->itemHolded->space != nullptr) {
 				Fazendinha::mouse->itemHolded->space->cont--;
 			}
 			moving = true;
+			if (aVenda) {
+				Fazendinha::player->dinheiro = Fazendinha::player->dinheiro - precoItem;
+				aVenda = false;
+				std::stringstream text;
+
+				text.str("");
+
+				text << Fazendinha::player->dinheiro << ".\n";
+				OutputDebugString(text.str().c_str());
+			}
 		}
 
 		if (!pego && Fazendinha::mouse->carrying && Fazendinha::mouse->itemHolded == this && window->KeyPress(VK_LBUTTON)) {

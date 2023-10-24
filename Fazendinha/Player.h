@@ -19,6 +19,7 @@
 #include "Particles.h"                    // sistema de partículas
 #include "Item.h"
 #include "Animation.h"
+#include "Sprite.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -44,11 +45,13 @@ private:
     uint state = NORMAL;
     uint relaxState = NORMAL;
     int vel = 0;
+    Sprite* placarDinheiro;
 
 public:
     Vector * speed;                     // velocidade e direção
     int vidas = 5;
     Item * usavel;
+    int dinheiro = 1000;
 
     Player();                           // construtor
     ~Player();                          // destrutor

@@ -2,12 +2,15 @@
 #include "Fazendinha.h"
 #include <sstream>
 
-BauSpaces::BauSpaces() {
+BauSpaces::BauSpaces(bool loja) {
+
+	isLoja = loja;
+
 	sprite = new Sprite("Resources/bauEspacos.png");
 	spaces = new InventorySpace * [36];
 
 	for (int i = 0; i < 36; i++) {
-		spaces[i] = new InventorySpace(); // Substitua `i` pelo valor desejado
+		spaces[i] = new InventorySpace(isLoja); // se for loja, cria éspaços de loja. se não for, continua normal
 	}
 
 	for (int i = 0; i < 36; i++) {
