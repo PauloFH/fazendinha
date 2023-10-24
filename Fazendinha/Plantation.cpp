@@ -17,6 +17,30 @@ Plantation::Plantation(uint plant = CHIRIVIA) {
 		numStages = 7;
 		tileset = new TileSet("Resources/couve-flor.png", 16, 32, numStages, numStages);
 	}
+	else if (plantationType == MELAO) {
+		numStages = 7;
+		tileset = new TileSet("Resources/melao.png", 16, 32, numStages, numStages);
+	}
+	else if (plantationType == BERINJELA) {
+		numStages = 7;
+		tileset = new TileSet("Resources/berinjela.png", 16, 32, numStages, numStages);
+	}
+	else if (plantationType == MILHO) {
+		numStages = 7;
+		tileset = new TileSet("Resources/milho.png", 16, 32, numStages, numStages);
+	}
+	else if (plantationType == ABOBORA) {
+		numStages = 7;
+		tileset = new TileSet("Resources/abobora.png", 16, 32, numStages, numStages);
+	}
+	else if (plantationType == ABACAXI) {
+		numStages = 7;
+		tileset = new TileSet("Resources/abacaxi.png", 16, 32, numStages, numStages);
+	}
+	else if (plantationType == BATATA) {
+		numStages = 7;
+		tileset = new TileSet("Resources/batata.png", 16, 32, numStages, numStages);
+	}
 
 	animation = new Animation(tileset, 0.5f, true);
 
@@ -40,7 +64,7 @@ void Plantation::Update() {
 	if (animation->Frame() == numStages - 1) {
 		plantationState = MATURE;
 	}
-	else if(Fazendinha::timer.Elapsed(600.0f) && regada){
+	else if(Fazendinha::timer.Elapsed(2.0f) && regada){
 		animation->NextFrame();
 		regada = false;
 	}
@@ -58,11 +82,11 @@ void Plantation::OnCollision(Object* obj) {
 		if (plantationState == MATURE && window->KeyPress(VK_LBUTTON)) {
 			InventorySpace* tst = new InventorySpace();
 			tst->MoveTo(-10000, -10000);
-			Item* fruto = new Item(0, tst);
+			Item* fruto = new Item(plantationType, tst);
 			Fazendinha::scene->Add(fruto, MOVING);
-			fruto->MoveTo(x, y);
+			fruto->MoveTo(x - 4, y - 4);
 
-			Fazendinha::scene->Delete(this, STATIC);
+			Fazendinha::scene->Delete(this, MOVING);
 		}
 	}
 

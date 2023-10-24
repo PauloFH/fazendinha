@@ -6,13 +6,25 @@
 
 enum ItemTypes {
 	ITEMCHIRIVIA,
-	SEEDCHIRIVIA,
 	ITEMCOUVEFLOR,
-	SEEDCOUVEFLOR,
 	ITEMMELAO,
-	SEEDMELAO, 
+	ITEMBERINJELA,
+	ITEMMILHO,
+	ITEMABOBORA,
+	ITEMABACAXI,
+	ITEMBATATA,
+	SEEDCHIRIVIA,
+	SEEDCOUVEFLOR,
+	SEEDMELAO,
+	SEEDBERINJELA,
+	SEEDMILHO,
+	SEEDABOBORA,
+	SEEDABACAXI,
+	SEEDBATATA,
 	ITEMREGADOR,
-	ITEMARADOR
+	ITEMARADOR,
+	OVO,
+	LEITE
 };
 
 class Item : public Object {
@@ -27,6 +39,8 @@ public:
 	bool considerado = false;
 	bool pego = false;
 	bool moving = false;
+	int precoItem = 0;
+	bool aVenda = false;
 
 	Item(uint itType = 0, InventorySpace* spc = nullptr);
 	~Item();

@@ -14,8 +14,9 @@ private:
 public:
 	InventorySpace** spaces;
 	bool isOpen = false;
+	bool isLoja = false;
 
-	BauSpaces();
+	BauSpaces(bool loja = false);
 	~BauSpaces();
 
 	void Update();

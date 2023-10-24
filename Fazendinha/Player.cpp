@@ -24,6 +24,8 @@ Player::Player()
     //sprite = new Sprite("Resources/Player.png");
     tileset = new TileSet("Resources/player.png", 96, 192, 6, 36);
     animation = new Animation(tileset, 0.2f, true);
+    placarDinheiro = new Sprite("Resources/placarDinheiro.png");
+
 
     uint normal[1] = { 0 };
     uint playerleft[3] = { 35, 34, 33 };
@@ -249,6 +251,77 @@ void Player::Update()
                 Fazendinha::audio->Play(PLANTAR_AUDIO);
             }
         }
+        if (usavel->itemType == SEEDCOUVEFLOR) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(COUVEFLOR);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDMELAO) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(MELAO);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDBERINJELA) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(BERINJELA);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDABOBORA) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(ABOBORA);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDMILHO) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(MILHO);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDBATATA) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(BATATA);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDABACAXI) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(ABACAXI);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+
     }
 
     vel = 250;
@@ -260,6 +333,10 @@ void Player::Update()
 void Player::Draw()
 {
     animation->Draw(x, y, Layer::MIDDLE, scale);
+    Color Black(0.0f, 0.0f, 0.0f, 5.0f);
+    string dindin = std::to_string(dinheiro);
+    Fazendinha::text->Draw(60, 50, dindin, Black, Layer::FRONT, 0.2f);
+    placarDinheiro->Draw(game->viewport.left + 100, game->viewport.top + 50, Layer::FRONT + 0.01f);
 }
 
 

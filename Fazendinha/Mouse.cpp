@@ -10,7 +10,7 @@ Mouse::Mouse() {
 
 	state = PLENO;
 	carrying = false;
-	BBox(new Rect(-8, -8, 7, 7));
+	BBox(new Rect(-4, -4, 3, 3));
 
 	Scale(2.0);
 

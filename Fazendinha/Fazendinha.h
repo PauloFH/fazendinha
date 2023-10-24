@@ -23,11 +23,12 @@
 #include "Mouse.h"
 #include "Inventary.h"
 #include "Controller.h"
+#include "Sprite.h"
 
 // ------------------------------------------------------------------------------
 
 
-enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY, FENCE, SHOP_BUILD, REGADOR, ARADOR};
+enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTATION, MOUSE, ITEM, BAU, SPACE, ENEMY, FENCE, SHOP_BUILD, REGADOR, ARADOR, VENDA};
 
 // ------------------------------------------------------------------------------
 
@@ -44,6 +45,10 @@ class Fazendinha : public Game
 private:
     Background * backg = nullptr;   // pano de fundo
     bool viewBBox = true;          // visualização das bouding boxes
+    Timer initTimer;
+    bool start;
+    Sprite* telaInicial;
+
     int tempo = 800;
 public:
     static Controller* gamepad;
