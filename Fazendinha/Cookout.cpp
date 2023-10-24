@@ -35,5 +35,5 @@ void Cookout::OnCollision(Object* obj) {
 
 Cookout::~Cookout() {
 	delete sprite;
-	delete cm;
+	//delete cm;
 }

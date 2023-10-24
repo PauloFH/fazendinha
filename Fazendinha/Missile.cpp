@@ -11,6 +11,7 @@
 
 #include "Missile.h"
 #include "Fazendinha.h"
+#include "TelaInicial.h"
 
 // ------------------------------------------------------------------------------
 
@@ -58,8 +59,8 @@ void Missile::Update()
         // volume do som de destruição depende da distância para o jogador
         float distance = Point::Distance(Point(x, y), Point(player->X(), player->Y()));
         float level = (MaxDistance - distance) / MaxDistance * BaseVolume;
-        Fazendinha::audio->Volume(HITWALL, level);
-        Fazendinha::audio->Play(HITWALL);
+        TelaInicial::audio->Volume(HITWALL, level);
+        TelaInicial::audio->Play(HITWALL);
 
 
         // remove míssil da cena

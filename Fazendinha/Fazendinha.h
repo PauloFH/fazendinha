@@ -30,10 +30,6 @@ enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTA
 
 // ------------------------------------------------------------------------------
 
-enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL };
-
-// ------------------------------------------------------------------------------
-
 enum DayState { DAY, NIGHT };
 
 // ------------------------------------------------------------------------------

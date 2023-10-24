@@ -12,6 +12,7 @@
 #include "Player.h" 
 #include "Missile.h"
 #include "Fazendinha.h"
+#include "TelaInicial.h"
 #include "Tool.h"
 
 // -------------------------------------------------------------------------------
@@ -86,7 +87,7 @@ void Player::Update()
     // dispara míssil
     if (window->KeyPress(VK_SPACE))
     {
-        Fazendinha::audio->Play(FIRE);
+        TelaInicial::audio->Play(FIRE);
         Fazendinha::scene->Add(new Missile(), STATIC);
     }
 

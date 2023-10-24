@@ -5,6 +5,9 @@
 #include "Background.h"
 #include "Font.h"
 #include "Scene.h"
+#include "Audio.h"
+
+enum SoundIds {THEME,START,FIRE,EXPLODE,HITWALL};
 
 class TelaInicial : public Game {
 
@@ -14,6 +17,7 @@ private:
 
 public:
 	static Scene* scene;
+	static Audio* audio;
 
 	void Init();
 	void Update();

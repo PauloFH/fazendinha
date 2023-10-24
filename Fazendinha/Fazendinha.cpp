@@ -8,6 +8,7 @@
 // Descrição:   Demonstração da versão final do motor
 //
 **********************************************************************************/
+#include "TelaInicial.h"
 
 #include "Resources.h"
 #include "Fazendinha.h"
@@ -27,7 +28,6 @@
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
-Audio  * Fazendinha::audio   = nullptr;
 Scene  * Fazendinha::scene   = nullptr;
 bool     Fazendinha::viewHUD = false;
 Timer Fazendinha::timer;
@@ -41,18 +41,6 @@ Inventary* Fazendinha::inventary = nullptr;
 
 void Fazendinha::Init()
 {
-    // cria sistema de áudio
-    audio = new Audio();
-    audio->Add(THEME, "Resources/Theme.wav");
-    audio->Add(FIRE, "Resources/Fire.wav");
-    audio->Add(HITWALL, "Resources/Hitwall.wav");
-    audio->Add(EXPLODE, "Resources/Explode.wav");
-    audio->Add(START, "Resources/Start.wav");
-
-    // ajusta volumes
-    audio->Volume(FIRE, 0.2f);
-    audio->Volume(START, 0.8f);
-
     // carrega/incializa objetos
     backg   = new Background("Resources/grass.png");
     player  = new Player();
@@ -262,7 +250,6 @@ void Fazendinha::Draw()
 
 void Fazendinha::Finalize()
 {
-    delete audio;
     delete scene;
     delete backg;
 }
