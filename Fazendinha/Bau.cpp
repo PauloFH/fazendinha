@@ -21,7 +21,8 @@ Bau::~Bau() {
 
 void Bau::Update() {
 	if (opened) {
-		if (window->KeyPress(VK_RBUTTON)) {
+
+		if (window->KeyPress(VK_RBUTTON)|| Fazendinha::gamepad->XboxButton(ButtonB)) {
 			opened = false;
 			bauOpened->isOpen = false;
 			bauOpened->MoveTo(100000, 100000);
@@ -31,7 +32,7 @@ void Bau::Update() {
 
 void Bau::OnCollision(Object* obj) {
 	if (obj->Type() == MOUSE) {
-		if (!opened && window->KeyPress(VK_LBUTTON)) {
+		if (!opened && window->KeyPress(VK_LBUTTON) || Fazendinha::gamepad->XboxButton(ButtonB)) {
 			opened = true;
 			bauOpened->isOpen = true;
 			bauOpened->MoveTo(game->viewport.left + window->Width() / 2, game->viewport.top + window->Height() / 2);
