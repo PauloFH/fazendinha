@@ -285,7 +285,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
     Game * game = new Fazendinha();
 
     // configura o jogo
-    game->Size(4096, 2048);
+    game->Size(2846, 2046);
     
     // inicia execução
     engine->Start(game);
