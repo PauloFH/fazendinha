@@ -38,9 +38,10 @@ Inventary::~Inventary() {
 	delete sprite;
 }
 
+
 void Inventary::Update() {
 	MoveTo(game->viewport.left + window->Width() / 2, game->viewport.top + window->Height() - sprite->Height() / 4);
-
+	
 	for (int i = 0; i < 12; i++) {
 		if (spaces[i]->cont < 0) {
 			spaces[i]->objItem = nullptr;

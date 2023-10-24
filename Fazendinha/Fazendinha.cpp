@@ -215,8 +215,7 @@ void Fazendinha::Update()
 
     }
     // sai com o pressionamento da tecla ESC
-    if (window->KeyDown(
-        _ESCAPE))
+    if (window->KeyDown(VK_ESCAPE))
         window->Close();
 
     // atualiza cena e calcula colisões
@@ -307,7 +306,9 @@ void Fazendinha::Update()
             }
 
             if (it != nullptr) {
+               if(it->pego && Fazendinha::gamepad->XboxButton(RightBumper)){
 
+               }
                 if (!it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
                     if (inventary->spaces[i]->ocupado) {
 
