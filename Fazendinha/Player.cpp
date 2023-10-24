@@ -241,7 +241,7 @@ void Player::Update()
             }
         }
 
-        if (usavel->itemType == SEEDCHIRIVIA|| Fazendinha::gamepad->XboxButton(ButtonA)) {
+        if (usavel->itemType == SEEDCHIRIVIA) {
             
             if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(CHIRIVIA);
@@ -253,7 +253,7 @@ void Player::Update()
         }
         if (usavel->itemType == SEEDCOUVEFLOR) {
 
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(COUVEFLOR);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
@@ -263,7 +263,7 @@ void Player::Update()
         }
         if (usavel->itemType == SEEDMELAO) {
 
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(MELAO);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
@@ -273,7 +273,7 @@ void Player::Update()
         }
         if (usavel->itemType == SEEDBERINJELA) {
 
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(BERINJELA);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
@@ -283,7 +283,7 @@ void Player::Update()
         }
         if (usavel->itemType == SEEDABOBORA) {
 
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(ABOBORA);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
@@ -293,7 +293,7 @@ void Player::Update()
         }
         if (usavel->itemType == SEEDMILHO) {
 
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(MILHO);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
@@ -303,7 +303,7 @@ void Player::Update()
         }
         if (usavel->itemType == SEEDBATATA) {
 
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(BATATA);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
@@ -313,7 +313,7 @@ void Player::Update()
         }
         if (usavel->itemType == SEEDABACAXI) {
 
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(ABACAXI);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
