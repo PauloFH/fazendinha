@@ -9,17 +9,16 @@ class Cookout : public Object
 {
 
 private:
+	CraftMenu* cm;
 	Sprite* sprite;
-	CraftMenu* craftMenu;
-	Cookout* ck;
-	bool hit = false;
+	bool opened = false;
 
 public:
 	Cookout();
 	~Cookout();
 
-	void Update();
 	void Draw();
+	void Update();
 	void OnCollision(Object* obj);
 
 };

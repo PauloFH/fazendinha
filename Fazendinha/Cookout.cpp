@@ -3,36 +3,37 @@
 
 Cookout::Cookout() {
 	sprite = new Sprite("Resources/cookout_kit.png");
-	craftMenu = new CraftMenu();
-	BBox(new Rect(-10,-10,10,10) );
+	type = COOKOUT;
+	MoveTo(Fazendinha::player->X()+50, Fazendinha::player->Y() - 80, Layer::MOSTBACK);
+	BBox(new Rect(-10,-15,10,5) );
 	Scale(2.0);
 
-	type = COOKOUT;
-	MoveTo(Fazendinha::player->X()+50, Fazendinha::player->Y() - 80);
+	cm = new CraftMenu();
+	Fazendinha::scene->Add(cm, STATIC);
 }
 
 void Cookout::Update() {
-	if (hit) {
+	if (opened) {
 		if (window->KeyPress(VK_RBUTTON)) {
-			hit = false;
-			craftMenu->~CraftMenu();
+			opened = false;
+			cm->isOpen = false;
+			cm->MoveTo(1, 2, 10);
 		}
 	}
 }
 
 void Cookout::OnCollision(Object* obj) {
+	
 	if (obj->Type() == MOUSE) {
-		if (!hit && window->KeyPress(VK_LBUTTON)) {
-			hit = true;
-
-			OutputDebugString("\nPressionou LBUTTON\n");
-
-			Fazendinha::scene->Add(craftMenu, STATIC);
+		if (opened == false && window->KeyPress(VK_LBUTTON)) {
+			opened = true;
+			cm->isOpen = true;
+			cm->MoveTo(game->viewport.left+window->Width()/2,game->viewport.top+window->Height()/2);
 		}
 	}
 }
 
 Cookout::~Cookout() {
 	delete sprite;
-	delete craftMenu;
+	delete cm;
 }

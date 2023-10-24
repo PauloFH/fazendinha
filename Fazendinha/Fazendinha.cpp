@@ -22,6 +22,7 @@
 #include "Bau.h"
 #include "Enemy.h"
 #include "Cookout.h"
+#include "CouveflorQueijo.h"
 #include <sstream>
 // ------------------------------------------------------------------------------
 
@@ -127,6 +128,9 @@ void Fazendinha::Init()
 
     Cookout* ckt = new Cookout();
     scene->Add(ckt, STATIC);
+
+    CouveflorQueijo* couveflorComQueijo = new CouveflorQueijo();
+    scene->Add(couveflorComQueijo, STATIC);
 }
 
 // ------------------------------------------------------------------------------

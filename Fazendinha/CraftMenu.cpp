@@ -2,9 +2,9 @@
 #include "Fazendinha.h"
 
 
+bool CraftMenu::isOpen = false;
 CraftMenu::CraftMenu() {
 	sprite = new Sprite("Resources/craftmenu.png");
-	MoveTo(window->CenterX(), window->CenterY());
 }
 
 CraftMenu::~CraftMenu() {
@@ -12,6 +12,11 @@ CraftMenu::~CraftMenu() {
 }
 
 void CraftMenu::Update() {
-	MoveTo(window->CenterX(), window->CenterY());
+	if (isOpen) {
+		sprite->Draw(game->viewport.left+window->Width()/2, game->viewport.top+window->Height()/2-100),Layer::UPPER;
+	}
+}
+
+void CraftMenu::Draw() {
 }
 

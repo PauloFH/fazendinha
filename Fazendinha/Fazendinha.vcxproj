@@ -262,6 +262,7 @@
     <ClCompile Include="Plantation.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="CouveflorQueijo.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -303,6 +304,7 @@
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="CouveflorQueijo.h" />
     <ClInclude Include="Particles.h" />
     <ClInclude Include="Plantation.h" />
     <ClInclude Include="Player.h" />

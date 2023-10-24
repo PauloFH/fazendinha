@@ -3,16 +3,17 @@
 #include "Object.h"
 #include "Sprite.h"
 
+
 class CraftMenu : public Object {
-private:
-	Sprite* sprite;
 
 public:
+	Sprite* sprite;
 	CraftMenu();
 	~CraftMenu();
+	static bool isOpen;
 
 	void Draw();
 	void Update();
 };
 
-inline void CraftMenu::Draw() { sprite->Draw(x,y, Layer::MIDDLE); }
+
