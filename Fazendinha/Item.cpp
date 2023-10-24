@@ -13,6 +13,55 @@ Item::Item(uint itType, InventorySpace* spc) {
 		sprite = new Sprite("Resources/Items/seedChirivia.png");
 	}
 
+	if (itemType == ITEMCOUVEFLOR) {
+		sprite = new Sprite("Resources/Items/couveflor.png");
+	}
+	else if (itemType == SEEDCOUVEFLOR) {
+		sprite = new Sprite("Resources/Items/seedCouveflor.png");
+	}
+
+	if (itemType == ITEMBATATA) {
+		sprite = new Sprite("Resources/Items/batata.png");
+	}
+	else if (itemType == SEEDBATATA) {
+		sprite = new Sprite("Resources/Items/seedBatata.png");
+	}
+
+	if (itemType == ITEMABACAXI) {
+		sprite = new Sprite("Resources/Items/abacaxi.png");
+	}
+	else if (itemType == SEEDABACAXI) {
+		sprite = new Sprite("Resources/Items/seedAbacaxi.png");
+	}
+
+	if (itemType == ITEMABOBORA) {
+		sprite = new Sprite("Resources/Items/abobora.png");
+	}
+	else if (itemType == SEEDABOBORA) {
+		sprite = new Sprite("Resources/Items/seedAbobora.png");
+	}
+
+	if (itemType == ITEMMELAO) {
+		sprite = new Sprite("Resources/Items/melao.png");
+	}
+	else if (itemType == SEEDMELAO) {
+		sprite = new Sprite("Resources/Items/seedMelao.png");
+	}
+
+	if (itemType == ITEMMILHO) {
+		sprite = new Sprite("Resources/Items/milho.png");
+	}
+	else if (itemType == SEEDMILHO) {
+		sprite = new Sprite("Resources/Items/seedMilho.png");
+	}
+
+	if (itemType == ITEMBERINJELA) {
+		sprite = new Sprite("Resources/Items/berinjela.png");
+	}
+	else if (itemType == SEEDBERINJELA) {
+		sprite = new Sprite("Resources/Items/seedBerinjela.png");
+	}
+
 	if (itemType == ITEMREGADOR) {
 		sprite = new Sprite("Resources/Items/regador.png");
 	}

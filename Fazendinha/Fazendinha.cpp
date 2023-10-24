@@ -93,17 +93,26 @@ void Fazendinha::Init()
     inventary = new Inventary();
     scene->Add(inventary, STATIC);
 
-    Item* chirivia = new Item(0, inventary->spaces[4]);
+    Item* chirivia = new Item(ITEMCHIRIVIA, inventary->spaces[4]);
     scene->Add(chirivia, MOVING);
 
-    Item* chirivia2 = new Item(0, inventary->spaces[2]);
+    Item* chirivia2 = new Item(ITEMCHIRIVIA, inventary->spaces[2]);
     scene->Add(chirivia2, MOVING);
 
-    Item* seedChirivia = new Item(1, inventary->spaces[5]);
+    Item* seedChirivia = new Item(SEEDCHIRIVIA, inventary->spaces[5]);
     scene->Add(seedChirivia, MOVING);
     
-    Item* seedChirivia2 = new Item(1, inventary->spaces[6]);
+    Item* seedChirivia2 = new Item(SEEDCHIRIVIA, inventary->spaces[6]);
     scene->Add(seedChirivia2, MOVING);
+
+    Item* seedMelao = new Item(SEEDMELAO, inventary->spaces[0]);
+    scene->Add(seedMelao, MOVING);
+
+    Item* seedAbobora = new Item(SEEDABOBORA, inventary->spaces[1]);
+    scene->Add(seedAbobora, MOVING);
+
+    Item* seedBatata = new Item(SEEDBATATA, inventary->spaces[7]);
+    scene->Add(seedBatata, MOVING);
 
     Filter* filter = new Filter();
     scene->Add(filter, STATIC);
@@ -143,11 +152,11 @@ void Fazendinha::Update()
     // atualiza cena e calcula colisões
     scene->Update();
     scene->CollisionDetection();
-    scene->DrawBBox();
+    //scene->DrawBBox();
 
     // ativa ou desativa a bounding box
     if (window->KeyPress('B')) {
-        viewBBox = !viewBBox;
+        //viewBBox = !viewBBox;
         Filter::activated = !Filter::activated;
     }
 
@@ -216,7 +225,7 @@ void Fazendinha::Update()
 
         Item* it = nullptr;
 
-        if (inventary->spaces[i]->cont > 0 && inventary->spaces[i]->objItem != nullptr) {
+        if (inventary->spaces[i]->cont >= 0 && inventary->spaces[i]->objItem != nullptr) {
             it = dynamic_cast<Item*>(inventary->spaces[i]->objItem);
         }
 
@@ -253,7 +262,7 @@ void Fazendinha::Draw()
 {
     backg->Draw(viewport);
 
-    scene->DrawBBox();
+    //scene->DrawBBox();
     // desenha pano de fundo
 
 
