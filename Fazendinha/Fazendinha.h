@@ -22,6 +22,7 @@
 #include "Player.h"
 #include "Mouse.h"
 #include "Inventary.h"
+#include "Sprite.h"
 
 // ------------------------------------------------------------------------------
 
@@ -43,6 +44,9 @@ class Fazendinha : public Game
 private:
     Background * backg = nullptr;   // pano de fundo
     bool viewBBox = true;          // visualização das bouding boxes
+    Timer initTimer;
+    bool start;
+    Sprite* telaInicial;
 
 public:
     static Player * player;         // nave controlada pela jogador
