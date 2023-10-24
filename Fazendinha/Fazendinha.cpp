@@ -38,6 +38,7 @@ Inventary* Fazendinha::inventary = nullptr;
 Controller* Fazendinha::gamepad = nullptr;
 bool     Fazendinha::controllerOn = false;
 bool Fazendinha::xboxOn = false;
+bool Fazendinha::crescerPlantas = false;
 // ------------------------------------------------------------------------------
 
 void Fazendinha::Init()
@@ -215,8 +216,7 @@ void Fazendinha::Update()
 
     }
     // sai com o pressionamento da tecla ESC
-    if (window->KeyDown(
-        _ESCAPE))
+    if (window->KeyDown(VK_ESCAPE))
         window->Close();
 
     // atualiza cena e calcula colisões
@@ -233,15 +233,17 @@ void Fazendinha::Update()
 
     // ativa ou desativa a bounding box
     if (window->KeyPress('B') || Fazendinha::gamepad->XboxButton(ButtonA)) {
-        viewBBox = !viewBBox;
+        //viewBBox = !viewBBox;
         Filter::activated = !Filter::activated;
     }
 
         if (Filter::activated) {
             dayState = NIGHT;
+            crescerPlantas = false;
         }
         else {
             dayState = DAY;
+            crescerPlantas = true;
         }
 
         // ativa ou desativa o heads up display
