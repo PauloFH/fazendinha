@@ -12,8 +12,9 @@ public:
 	int cont = 0;
 	char chave;
 	Object* objItem;
+	bool isLoja;
 
-	InventorySpace();
+	InventorySpace(bool loja = false);
 	~InventorySpace();
 
 	void Update();

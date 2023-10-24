@@ -2,7 +2,9 @@
 #include "Fazendinha.h"
 #include <sstream>
 
-InventorySpace::InventorySpace() {
+InventorySpace::InventorySpace(bool loja) {
+
+	isLoja = loja;
 
 	BBox(new Rect(-16, -16, 15, 15));
 	
@@ -16,6 +18,7 @@ InventorySpace::~InventorySpace() {
 
 void InventorySpace::Update() {
 	ocupado = false;
+
 
 	if (cont < 0) {
 		Fazendinha::scene->Delete(objItem, MOVING);
@@ -52,6 +55,19 @@ void InventorySpace::OnCollision(Object* obj) {
 			cont++;
 			item->considerado = true;
 		}
+
+		/* por algum motivo tá bugando e tá devolvendo o dinheiro sempre
+		if (!item->aVenda) {
+			Fazendinha::player->dinheiro += item->precoItem;
+			item->aVenda = true;
+
+			std::stringstream text;
+
+			text.str("");
+
+			text << Fazendinha::player->dinheiro << ".\n";
+			OutputDebugString(text.str().c_str());
+		}*/
 
 	}
 }

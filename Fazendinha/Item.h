@@ -37,6 +37,8 @@ public:
 	bool considerado = false;
 	bool pego = false;
 	bool moving = false;
+	int precoItem = 0;
+	bool aVenda = false;
 
 	Item(uint itType = 0, InventorySpace* spc = nullptr);
 	~Item();
