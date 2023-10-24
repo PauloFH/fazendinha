@@ -84,7 +84,7 @@ void Plantation::OnCollision(Object* obj) {
 			tst->MoveTo(-10000, -10000);
 			Item* fruto = new Item(plantationType, tst);
 			Fazendinha::scene->Add(fruto, MOVING);
-			fruto->MoveTo(x, y);
+			fruto->MoveTo(x - 4, y - 4);
 
 			Fazendinha::scene->Delete(this, MOVING);
 		}

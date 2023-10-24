@@ -71,6 +71,14 @@ Item::Item(uint itType, InventorySpace* spc) {
 		sprite = new Sprite("Resources/Items/arador.png");
 	}
 
+	if (itemType == OVO) {
+		sprite = new Sprite("Resources/Items/ovo.png");
+	}
+
+	if (itemType == LEITE) {
+		sprite = new Sprite("Resources/Items/leite.png");
+	}
+
 	BBox(new Rect(-24, -24, 23, 23));
 
 	type = ITEM;
@@ -82,30 +90,54 @@ Item::~Item() {
 
 void Item::Update() {
 
-	if (aVenda) {
+	if (aVenda || !aVenda) {
 		if (itemType == SEEDCHIRIVIA) {
 			precoItem = 10;
 		}
-		else if (itemType == SEEDCOUVEFLOR) {
+		if (itemType == SEEDCOUVEFLOR) {
 			precoItem = 15;
 		}
-		else if (itemType == SEEDMELAO) {
+		if (itemType == SEEDMELAO) {
 			precoItem = 25;
 		}
-		else if (itemType == SEEDBATATA) {
+		if (itemType == SEEDBATATA) {
 			precoItem = 40;
 		}
-		else if (itemType = SEEDBERINJELA) {
+		if (itemType == SEEDBERINJELA) {
 			precoItem = 50;
 		}
-		else if (itemType == SEEDABACAXI) {
+		if (itemType == SEEDABACAXI) {
 			precoItem = 150;
 		}
-		else if (itemType == SEEDABOBORA) {
+		if (itemType == SEEDABOBORA) {
 			precoItem = 80;
 		}
-		else if (itemType == SEEDMILHO) {
+		if (itemType == SEEDMILHO) {
 			precoItem = 30;
+		}
+		if (itemType == ITEMCHIRIVIA) {
+			precoItem = 20;
+		}
+		if (itemType == ITEMCOUVEFLOR) {
+			precoItem = 30;
+		}
+		if (itemType == ITEMMELAO) {
+			precoItem = 50;
+		}
+		if (itemType == ITEMBATATA) {
+			precoItem = 80;
+		}
+		if (itemType == ITEMBERINJELA) {
+			precoItem = 100;
+		}
+		if (itemType == ITEMABACAXI) {
+			precoItem = 300;
+		}
+		if (itemType == ITEMABOBORA) {
+			precoItem = 160;
+		}
+		if (itemType == ITEMMILHO) {
+			precoItem = 60;
 		}
 	}
 
@@ -115,18 +147,22 @@ void Item::Update() {
 			MoveTo(space->X(), space->Y());
 			space->ocupado = true;
 		}
-		if (space->X() == -10000) {
+		if (space->X() == -10000 || space->X() == -15000) {
 			space->ocupado = true;
 		}
 	}
 	else {
-		if (!moving && space != nullptr && space->X() != -10000) {
+		if (!moving && space != nullptr && space->X() != -10000 && space->X() != -15000) {
 			MoveTo(space->X(), space->Y());
 			space->ocupado = true;
 		}
 		if (space->X() == -10000) {
 			space->ocupado = true;
 		}
+	}
+
+	if (itemType == OVO || itemType == LEITE) {
+	
 	}
 
 }

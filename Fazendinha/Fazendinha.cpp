@@ -22,6 +22,7 @@
 #include "Bau.h"
 #include "Enemy.h"
 #include <sstream>
+#include "Venda.h"
 // ------------------------------------------------------------------------------
 
 Player * Fazendinha::player  = nullptr;
@@ -82,6 +83,9 @@ void Fazendinha::Init()
     scene->Add(new Build(1500, 300, SHOP_BUILD, new Sprite("Resources/shop_day.png")), STATIC);
     scene->Add(new Build(500, 300, COMMUNITY, new Sprite("Resources/closed.png")), STATIC);
     // Aqui já começa a configuração do jogo em si
+    telaInicial = new Sprite("Resources/telaInicial.png");
+
+    initTimer.Start();
     timer.Start();
 
     text = new Font("Resources/text.png");
@@ -129,13 +133,22 @@ void Fazendinha::Init()
 
     Bau* bau = new Bau();
     scene->Add(bau, STATIC);
+    bau->MoveTo(2400, 540);
 
-    Item* regador = new Item(ITEMREGADOR, bau->bauOpened->spaces[2]);
+    /*Bau* bau2 = new Bau();
+    scene->Add(bau2, STATIC);
+    bau2->MoveTo(2460, 540);*/
+
+    Item* regador = new Item(ITEMREGADOR, bau->bauOpened->spaces[0]);
     scene->Add(regador, MOVING);
 
-    Item* arador = new Item(ITEMARADOR, bau->bauOpened->spaces[7]);
+    Item* arador = new Item(ITEMARADOR, bau->bauOpened->spaces[1]);
     scene->Add(arador, MOVING);
 
+    Venda* venda = new Venda();
+    scene->Add(venda, STATIC);
+    venda->MoveTo(2460, 540);
+    
     Enemy* bug = new Enemy();
     scene->Add(bug, MOVING);
 
@@ -154,105 +167,115 @@ void Fazendinha::Update()
     scene->CollisionDetection();
     //scene->DrawBBox();
 
-    // ativa ou desativa a bounding box
-    if (window->KeyPress('B')) {
-        //viewBBox = !viewBBox;
-        Filter::activated = !Filter::activated;
-    }
-
-    if (Filter::activated) {
-        dayState = NIGHT;
+    if (!start) {
+        if (initTimer.Elapsed(5.0f)) {
+            start = true;
+        }
     }
     else {
-        dayState = DAY;
-    }
-       
-    // ativa ou desativa o heads up display
 
-    // --------------------
-    // atualiza a viewport
-    // --------------------
-
-    viewport.left   = player->X() - window->CenterX();
-    viewport.right  = player->X() + window->CenterX();
-    viewport.top    = player->Y() - window->CenterY();
-    viewport.bottom = player->Y() + window->CenterY();
-            
-    if (viewport.left < 0)
-    {
-        viewport.left  = 0;
-        viewport.right = window->Width();
-    }
-    else if (viewport.right > game->Width())
-    {  
-        viewport.left  = game->Width() - window->Width();
-        viewport.right = game->Width();
-    }
-                  
-    if (viewport.top < 0)
-    {
-        viewport.top  = 0;
-        viewport.bottom = window->Height();
-    }
-    else if (viewport.bottom > game->Height())
-    {
-        viewport.top = game->Height() - window->Height();
-        viewport.bottom = game->Height();
-    }
-
-    // ------------------------------------------------------------------------------
-    //                          MECÂNICAS DE JOGO
-    // ------------------------------------------------------------------------------
-
-    if (dayState == DAY && timer.Elapsed(300.0f)) {
-        Filter::activated = true;
-        dayState = NIGHT;
-    }
-    else if (dayState == NIGHT && timer.Elapsed(600.0f)) {
-        Filter::activated = false;
-        dayState = DAY;
-        dayCount++;
-        timer.Reset();
-    }
-
-    if (window->KeyPress(VK_LBUTTON) && mouse->State() != COLISAO && player->PlayerState() == ARADOR) {
-        Ground* ground = new Ground(window->MouseX() + game->viewport.left, window->MouseY() + game->viewport.top);
-        scene->Add(ground, MOVING);
-    }
-
-  
-    for (int i = 0; i < 12; i++) {
-
-        Item* it = nullptr;
-
-        if (inventary->spaces[i]->cont >= 0 && inventary->spaces[i]->objItem != nullptr) {
-            it = dynamic_cast<Item*>(inventary->spaces[i]->objItem);
+        // ativa ou desativa a bounding box
+        if (window->KeyPress('B')) {
+            //viewBBox = !viewBBox;
+            Filter::activated = !Filter::activated;
         }
 
-        if (it != nullptr) {
+        if (Filter::activated) {
+            dayState = NIGHT;
+        }
+        else {
+            dayState = DAY;
+        }
 
-            if (!it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
-                if (inventary->spaces[i]->ocupado) {
+        // ativa ou desativa o heads up display
 
-                    std::stringstream text;
+        // --------------------
+        // atualiza a viewport
+        // --------------------
 
-                    text.str("");
+        viewport.left = player->X() - window->CenterX();
+        viewport.right = player->X() + window->CenterX();
+        viewport.top = player->Y() - window->CenterY();
+        viewport.bottom = player->Y() + window->CenterY();
 
-                    text << inventary->spaces[i]->chave << ".\n";
-                    OutputDebugString(text.str().c_str());
+        if (viewport.left < 0)
+        {
+            viewport.left = 0;
+            viewport.right = window->Width();
+        }
+        else if (viewport.right > game->Width())
+        {
+            viewport.left = game->Width() - window->Width();
+            viewport.right = game->Width();
+        }
 
-                    it->pego = true;
-                    player->usavel = it;
-                    //it->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
+        if (viewport.top < 0)
+        {
+            viewport.top = 0;
+            viewport.bottom = window->Height();
+        }
+        else if (viewport.bottom > game->Height())
+        {
+            viewport.top = game->Height() - window->Height();
+            viewport.bottom = game->Height();
+        }
 
+        // ------------------------------------------------------------------------------
+        //                          MECÂNICAS DE JOGO
+        // ------------------------------------------------------------------------------
+
+        if (dayState == DAY && timer.Elapsed(300.0f)) {
+            Filter::activated = true;
+            dayState = NIGHT;
+        }
+        else if (dayState == NIGHT && timer.Elapsed(600.0f)) {
+            Filter::activated = false;
+            dayState = DAY;
+            dayCount++;
+            timer.Reset();
+        }
+
+        if (window->KeyPress(VK_LBUTTON) && mouse->State() != COLISAO && player->PlayerState() == ARADOR) {
+            Ground* ground = new Ground(window->MouseX() + game->viewport.left, window->MouseY() + game->viewport.top);
+            scene->Add(ground, MOVING);
+        }
+
+
+        for (int i = 0; i < 12; i++) {
+
+            Item* it = nullptr;
+
+            if (inventary->spaces[i]->cont >= 0 && inventary->spaces[i]->objItem != nullptr) {
+                it = dynamic_cast<Item*>(inventary->spaces[i]->objItem);
+            }
+
+            if (it != nullptr) {
+
+                if (!it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
+                    if (inventary->spaces[i]->ocupado) {
+
+                        std::stringstream text;
+
+                        text.str("");
+
+                        text << inventary->spaces[i]->chave << ".\n";
+                        OutputDebugString(text.str().c_str());
+
+                        it->pego = true;
+                        player->usavel = it;
+                        //it->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
+
+                    }
+                }
+
+                if (it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
+                    it->pego = false;
                 }
             }
-
-            if (it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
-                it->pego = false;
-            }
         }
-    }  
+    }
+
+
 
 } 
 
@@ -267,8 +290,15 @@ void Fazendinha::Draw()
 
 
     // desenha a cena
-    scene->Draw();
+   
 
+    if (!start) {
+        telaInicial->Draw(viewport.top + game->Width() / 4 + 29, viewport.left + 84, Layer::FRONT - 0.02f);
+    }
+    else {
+        scene->Draw();
+    }
+    
     // desenha bounding box
        
 

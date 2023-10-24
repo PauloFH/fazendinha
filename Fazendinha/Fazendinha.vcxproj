@@ -269,6 +269,7 @@
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Tool.cpp" />
     <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="Venda.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WorldBuilder.cpp" />
   </ItemGroup>
@@ -316,6 +317,7 @@
     <ClInclude Include="Tool.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="Venda.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldBuilder.h" />
   </ItemGroup>

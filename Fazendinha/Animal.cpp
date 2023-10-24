@@ -39,10 +39,11 @@ Animal::Animal(uint anType = 0) {
 
 		BBox(new Rect(-16, -16, 15, 15));
 
-		Scale(2.0);
+		Scale(1.9);
 	}
 	vel = 50;
 	timer.Start();
+	recursoTimer.Start();
 
 	MoveTo(Fazendinha::player->X() + 150, Fazendinha::player->Y() + 100);
 
@@ -60,6 +61,24 @@ void Animal::Update() {
 	RandI newState{ 0, 3 };
 
 
+	if (animalType == CHICKEN && recursoTimer.Elapsed(600.0f)) {
+		InventorySpace* tst = new InventorySpace();
+		tst->MoveTo(-15000, -15000);
+		Item* ovo = new Item(OVO, tst);
+		Fazendinha::scene->Add(ovo, MOVING);
+		ovo->MoveTo(x, y);
+		recursoTimer.Reset();
+	}
+
+	if (animalType == COW && recursoTimer.Elapsed(600.0f)) {
+		InventorySpace* tst = new InventorySpace();
+		tst->MoveTo(-15000, -15000);
+		Item* leite = new Item(LEITE, tst);
+		Fazendinha::scene->Add(leite, MOVING);
+		leite->MoveTo(x, y);
+		recursoTimer.Reset();
+	}
+
 	if (timer.Elapsed(5.0f)) {
 		movable = true;
 		state = nextState;
@@ -68,9 +87,6 @@ void Animal::Update() {
 	if (movable) {
 		if (state == LEFT) {
 			Translate(-vel * gameTime, 0);
-			if (animalType == COW) {
-				
-			}
 		}
 		else if (state == RIGHT) {
 			Translate(vel * gameTime, 0);
