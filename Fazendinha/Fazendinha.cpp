@@ -309,7 +309,9 @@ void Fazendinha::Update()
             }
 
             if (it != nullptr) {
+               if(it->pego && Fazendinha::gamepad->XboxButton(RightBumper)){
 
+               }
                 if (!it->pego && window->KeyPress(inventary->spaces[i]->chave)) {
                     if (inventary->spaces[i]->ocupado) {
 
