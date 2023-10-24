@@ -114,9 +114,19 @@ void Player::Update()
 
             state = TOOL;
             if (window->KeyPress('R')) {
-                Tool* tool = new Tool();
-                Fazendinha::scene->Add(tool, MOVING);
-                tool->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
+                Tool* regador = new Tool();
+                Fazendinha::scene->Add(regador, MOVING);
+                regador->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
+            }
+        }
+
+        if (usavel->itemType == ITEMARADOR) {
+
+            state = TOOL;
+            if (window->KeyPress('R')) {
+                Tool* arador = new Tool(ARADOR);
+                Fazendinha::scene->Add(arador, MOVING);
+                arador->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
             }
         }
     }

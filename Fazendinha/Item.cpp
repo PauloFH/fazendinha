@@ -17,6 +17,10 @@ Item::Item(uint itType, InventorySpace* spc) {
 		sprite = new Sprite("Resources/Items/regador.png");
 	}
 
+	if (itemType == ITEMARADOR) {
+		sprite = new Sprite("Resources/Items/arador.png");
+	}
+
 	BBox(new Rect(-24, -24, 23, 23));
 
 	type = ITEM;
