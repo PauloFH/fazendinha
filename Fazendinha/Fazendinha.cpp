@@ -34,23 +34,31 @@ int Fazendinha::dayCount = 1;
 Mouse * Fazendinha::mouse = nullptr;
 Font* Fazendinha::text = nullptr;
 Inventary* Fazendinha::inventary = nullptr;
-
+Controller* Fazendinha::gamepad = nullptr;
+bool     Fazendinha::controllerOn = false;
+bool Fazendinha::xboxOn = false;
 // ------------------------------------------------------------------------------
 
 void Fazendinha::Init()
 {
+    gamepad = new Controller();
+
+    // tenta inicializar um controle do xbox
+    xboxOn = gamepad->XboxInitialize(xboxPlayer);
+    if (!xboxOn)
+        controllerOn = gamepad->Initialize();
+
     // cria sistema de áudio
     audio = new Audio();
-    audio->Add(THEME, "Resources/Theme.wav");
-    audio->Add(FIRE, "Resources/Fire.wav");
-    audio->Add(HITWALL, "Resources/Hitwall.wav");
-    audio->Add(EXPLODE, "Resources/Explode.wav");
-    audio->Add(START, "Resources/Start.wav");
-
-    // ajusta volumes
-    audio->Volume(FIRE, 0.2f);
-    audio->Volume(START, 0.8f);
-
+    audio->Add(THEME, "Resources/Thame.wav");
+    audio->Add(COW_AUDIO, "Resources/cow.wav");
+    audio->Add(GALINHA, "Resources/galinha.wav");
+    audio->Add(CAVAR_AUDIO, "Resources/cavar.wav");
+    audio->Add(AGUA_AUDIO, "Resources/agua.wav");
+    audio->Add(PLANTAR_AUDIO, "Resources/planta.wav");
+    audio->Volume(THEME, 0.8f);
+    audio->Volume(COW_AUDIO, 1.8f);
+    audio->Volume(GALINHA, 1.8f);
     // carrega/incializa objetos
     backg   = new Background("Resources/grass.png");
     player  = new Player();
@@ -129,15 +137,64 @@ void Fazendinha::Init()
 
     Enemy* bug = new Enemy();
     scene->Add(bug, MOVING);
-
+    audio->Play(THEME, true);
 }
 
 // ------------------------------------------------------------------------------
 
 void Fazendinha::Update()
 {
+    if (controllerOn)
+    {
+        // seleciona próximo controle (Page Down)
+        if (window->KeyPress(VK_NEXT))
+            gamepad->DeviceNext();
+
+        // seleciona controle anterior (Page Up)
+        if (window->KeyPress(VK_PRIOR))
+            gamepad->DevicePrev();
+
+        gamepad->UpdateState();
+    }
+    else if (xboxOn)
+    {
+        // seleciona próximo controle (Page Down)
+        if (window->KeyPress(VK_NEXT))
+        {
+            uint nextPlayer = (xboxPlayer + 1) % 4;
+
+            // se controle para próximo jogador está conectado                
+            if (gamepad->XboxUpdateState(nextPlayer))
+                xboxPlayer = nextPlayer;
+        }
+        // seleciona controle anterior (Page Up)
+        if (window->KeyPress(VK_PRIOR))
+        {
+            uint prevPlayer = xboxPlayer == 0 ? 3 : xboxPlayer - 1;
+
+            // se controle para jogador anterior está conectado    
+            if (gamepad->XboxUpdateState(prevPlayer))
+                xboxPlayer = prevPlayer;
+        }
+
+        // atualiza estado do controle
+        gamepad->XboxUpdateState(xboxPlayer);
+    }
+
+    if (tempo != 0) {
+        tempo--;
+    }
+    if (tempo == 0) {
+        audio->Play(COW_AUDIO);
+        tempo = 800;
+    }
+    if ((tempo - 50) == 0){
+        audio->Play(GALINHA);
+
+    }
     // sai com o pressionamento da tecla ESC
-    if (window->KeyDown(VK_ESCAPE))
+    if (window->KeyDown(
+        _ESCAPE))
         window->Close();
 
     // atualiza cena e calcula colisões
@@ -146,7 +203,7 @@ void Fazendinha::Update()
     scene->DrawBBox();
 
     // ativa ou desativa a bounding box
-    if (window->KeyPress('B')) {
+    if (window->KeyPress('B') || Fazendinha::gamepad->XboxButton(ButtonA)) {
         viewBBox = !viewBBox;
         Filter::activated = !Filter::activated;
     }

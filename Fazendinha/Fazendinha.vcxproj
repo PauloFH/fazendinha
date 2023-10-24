@@ -253,7 +253,6 @@
     <ClCompile Include="Inventary.cpp" />
     <ClCompile Include="InventorySpace.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Particles.cpp" />
@@ -295,7 +294,6 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="Inventary.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="Missile.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Particles.h" />

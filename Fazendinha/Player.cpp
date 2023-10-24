@@ -92,6 +92,29 @@ void Player::Update()
     }
 
     state = relaxState;
+   // Translate(Fazendinha::gamepad->XboxAnalog(ThumbLX) / 218.46f * gameTime , Fazendinha::gamepad->XboxAnalog(ThumbLY) / 218.46f * gameTime);
+    
+    if (Fazendinha::gamepad->XboxAnalog(ThumbLY)<-30) {
+        Translate(0, vel * gameTime);
+        state = PLAYERDOWN;
+        relaxState = NORMALDOWN;
+    }
+    else if (Fazendinha::gamepad->XboxAnalog(ThumbLY) > 30) {
+        Translate(0, -vel * gameTime);
+        state = PLAYERUP;
+        relaxState = NORMALUP;
+    }
+
+    if (Fazendinha::gamepad->XboxAnalog(ThumbLX) > 30) {
+        Translate(vel * gameTime, 0);
+        state = PLAYERRIGHT;
+        relaxState = NORMALRIGHT;
+    }
+    else if (Fazendinha::gamepad->XboxAnalog(ThumbLX) <- 30) {
+        Translate(-vel * gameTime, 0);
+        state = PLAYERLEFT;
+        relaxState = NORMALLEFT;
+    }
 
     if (window->KeyDown(VK_DOWN) || window->KeyDown('S')) {
         Translate(0, vel * gameTime);
@@ -150,8 +173,6 @@ void Player::Update()
     // dispara míssil
     if (window->KeyPress(VK_SPACE))
     {
-        Fazendinha::audio->Play(FIRE);
-        Fazendinha::scene->Add(new Missile(), STATIC);
     }
 
     // atualiza calda do jogador
@@ -175,9 +196,9 @@ void Player::Update()
 
     if (usavel != nullptr) {
         if (usavel->itemType == ITEMREGADOR) {
-
+            
             //state = TOOL;
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Tool* regador = new Tool();
                 Fazendinha::scene->Add(regador, MOVING);
                 regador->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
@@ -193,17 +214,19 @@ void Player::Update()
                 if (state == PLAYERDOWN || state == NORMALDOWN) {
                     regador->state == TOOLFRONT;
                 }
+                Fazendinha::audio->Play(AGUA_AUDIO);
             }
+
         }
 
         if (usavel->itemType == ITEMARADOR) {
-
+           
             //state = TOOL;
-            if (window->KeyPress('R')) {
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Tool* arador = new Tool(ARADOR);
                 Fazendinha::scene->Add(arador, MOVING);
                 arador->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
-
+                Fazendinha::audio->Play(CAVAR_AUDIO);
                 if (state == PLAYERLEFT || state == NORMALLEFT) {
                     arador->state = TOOLANOTHERSIDE;
                 }
@@ -216,14 +239,14 @@ void Player::Update()
             }
         }
 
-        if (usavel->itemType == SEEDCHIRIVIA) {
-
-            if (window->KeyPress('R')) {
+        if (usavel->itemType == SEEDCHIRIVIA|| Fazendinha::gamepad->XboxButton(ButtonA)) {
+            
+            if (window->KeyPress('R') || Fazendinha::gamepad->XboxButton(ButtonA)) {
                 Plantation* plant = new Plantation(CHIRIVIA);
                 Fazendinha::scene->Add(plant, MOVING);
                 usavel->space->cont--;
                 plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
-
+                Fazendinha::audio->Play(PLANTAR_AUDIO);
             }
         }
     }
@@ -260,19 +283,19 @@ void Player::OnCollision(Object* obj) {
         
             // A colisão é principalmente horizontal, ajuste na direção X
             if (collisionDirectionX > 0) {
-                MoveTo(build->X() + build->Width() + minimumDistance, y);
+                MoveTo(x + minimumDistance, y);
             }
             else {
-                MoveTo(build->X() - build->Width() - minimumDistance, y);
+                MoveTo(x - minimumDistance, y);
             }
         
        
             // A colisão é principalmente vertical, ajuste na direção Y
             if (collisionDirectionY > 0) {
-                MoveTo(x, build->Y() + build->Height() + minimumDistance);
+                MoveTo(x, y+ minimumDistance);
             }
             else {
-                MoveTo(x, build->Y() - build->Height() - minimumDistance);
+                MoveTo(x, y- minimumDistance);
             }
         
     }

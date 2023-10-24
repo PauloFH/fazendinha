@@ -22,6 +22,7 @@
 #include "Player.h"
 #include "Mouse.h"
 #include "Inventary.h"
+#include "Controller.h"
 
 // ------------------------------------------------------------------------------
 
@@ -30,7 +31,7 @@ enum ObjectIds { PLAYER, GROUND, GRASS, HOME, COMMUNITY, MISSILE, ANIMAL, PLANTA
 
 // ------------------------------------------------------------------------------
 
-enum SoundIds { THEME, START, FIRE, EXPLODE, HITWALL };
+enum SoundIds { THEME, START,COW_AUDIO, GALINHA, ALEATORIO , CAVAR_AUDIO, AGUA_AUDIO, PLANTAR_AUDIO};
 
 // ------------------------------------------------------------------------------
 
@@ -43,8 +44,9 @@ class Fazendinha : public Game
 private:
     Background * backg = nullptr;   // pano de fundo
     bool viewBBox = true;          // visualização das bouding boxes
-
+    int tempo = 800;
 public:
+    static Controller* gamepad;
     static Player * player;         // nave controlada pela jogador
     static Audio * audio;           // sitema de áudio
     static Scene * scene;           // cena do jogo
@@ -55,7 +57,9 @@ public:
     static Mouse * mouse;
     static Font * text;
     static Inventary * inventary;
-
+    static bool controllerOn;          // controle directinput ativado
+    static bool xboxOn;                // controle xinput ativado
+    uint xboxPlayer = PLAYER1;          // controle Xbox ativo           
     void Init();                    // inicialização
     void Update();                  // atualização
     void Draw();                    // desenho

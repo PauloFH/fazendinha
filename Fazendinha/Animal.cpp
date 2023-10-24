@@ -1,5 +1,6 @@
 #include "Animal.h"
 #include "Fazendinha.h"
+#include "Build.h"
 
 Animal::Animal(uint anType = 0) {
 
@@ -109,4 +110,39 @@ void Animal::OnCollision(Object* obj) {
 		timer.Reset();
 		esse if faz com que o animal não se mexa mais pq vai ficar pra sempre em colisão com o objeto
 	}*/
+
+	if (obj->Type() == HOME || obj->Type() == COMMUNITY || obj->Type() == SHOP_BUILD) {
+
+		vel = 0;
+
+		Build* build = dynamic_cast<Build*>(obj);
+
+		// Calcula a direção da colisão
+		float collisionDirectionX = x - build->X();
+		float collisionDirectionY = y - build->Y();
+
+		// Define a distância mínima para evitar sobreposição
+		float minimumDistance = 40.0f;
+
+		// Verifica a direção da colisão e ajusta a posição do jogador
+
+			// A colisão é principalmente horizontal, ajuste na direção X
+		if (collisionDirectionX > 0) {
+			MoveTo(x + minimumDistance, y);
+		}
+		else {
+			MoveTo(x - minimumDistance, y);
+		}
+
+
+		// A colisão é principalmente vertical, ajuste na direção Y
+		if (collisionDirectionY > 0) {
+			MoveTo(x, y + minimumDistance);
+		}
+		else {
+			MoveTo(x, y - minimumDistance);
+		}
+	}
+
+
 }
