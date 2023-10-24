@@ -19,6 +19,7 @@
 #include "Vector.h"                        // representação de vetores
 #include "Particles.h"                    // sistema de partículas
 #include "Item.h"
+#include "Animation.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -32,6 +33,8 @@ class Player : public Object
 {
 private:
     Sprite * sprite;                    // sprite do objeto
+    TileSet* tileset;
+    Animation* animation;
     uint state = NORMAL;
 
 public:

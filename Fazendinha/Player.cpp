@@ -13,6 +13,7 @@
 #include "Missile.h"
 #include "Fazendinha.h"
 #include "Tool.h"
+#include "Plantation.h"
 
 // -------------------------------------------------------------------------------
 
@@ -127,6 +128,17 @@ void Player::Update()
                 Tool* arador = new Tool(ARADOR);
                 Fazendinha::scene->Add(arador, MOVING);
                 arador->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
+            }
+        }
+
+        if (usavel->itemType == SEEDCHIRIVIA) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(CHIRIVIA);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
             }
         }
     }

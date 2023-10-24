@@ -24,6 +24,9 @@ Ground::~Ground() {
 void Ground::Update() {
 	if (isMolhado) {
 		sprite = molhado;
+		if (planted != nullptr) {
+			planted->regada = true;
+		}
 	}
 	else {
 		if (isArado) {
@@ -33,6 +36,8 @@ void Ground::Update() {
 			sprite = normal;
 		}
 	}
+
+	ocupado = false;
 }
 
 void Ground::Draw() {
@@ -58,9 +63,27 @@ void Ground::OnCollision(Object* obj) {
 		MoveTo(obj->X() + 16, obj->Y());
 	}*/
 
-	if (!ocupado && obj->Type() == PLANTATION) {
-		ocupado = true;
-		obj->MoveTo(x - 1, y - 15, Layer::LOWER - 0.01f);
+	if (obj->Type() == PLANTATION) {
+		Plantation* plt = dynamic_cast<Plantation*>(obj);
+		if (isArado) {
+			if (!ocupado) {
+				ocupado = true;
+				obj->MoveTo(x - 1, y - 15, Layer::LOWER - 0.01f);
+				plt->objGround = this;
+				planted = plt;
+			}
+		}
+
+		if (!isArado || (ocupado && planted != plt)) {
+			Fazendinha::scene->Delete(plt, MOVING);
+		}
 	}
+
+	/* if (!ocupado && it->itemType == SEEDCHIRIVIA && it->moving && it->pego) {
+                    it->space->cont--;
+                    planted = new Plantation(CHIRIVIA);
+                    Fazendinha::scene->Add(planted, MOVING);
+                }
+				*/
 
 }

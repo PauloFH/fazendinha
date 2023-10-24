@@ -40,6 +40,13 @@ Inventary::~Inventary() {
 
 void Inventary::Update() {
 	MoveTo(game->viewport.left + window->Width() / 2, game->viewport.top + window->Height() - sprite->Height() / 4);
+
+	for (int i = 0; i < 12; i++) {
+		if (spaces[i]->cont < 0) {
+			spaces[i]->objItem = nullptr;
+		}
+	}
+
 	spaces[0]->MoveTo(game->viewport.left + 232, game->viewport.top + window->Height() - 27);
 	spaces[1]->MoveTo(game->viewport.left + 278, game->viewport.top + window->Height() - 27);
 	spaces[2]->MoveTo(game->viewport.left + 324, game->viewport.top + window->Height() - 27);

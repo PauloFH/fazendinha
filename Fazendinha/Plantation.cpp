@@ -1,5 +1,6 @@
 #include "Plantation.h"
 #include "Fazendinha.h"
+#include "Ground.h"
 
 Plantation::Plantation(uint plant = CHIRIVIA) {
 
@@ -19,10 +20,12 @@ Plantation::Plantation(uint plant = CHIRIVIA) {
 
 	animation = new Animation(tileset, 0.5f, true);
 
-	BBox(new Rect(-8, -1, 7, 15));
+	BBox(new Rect(-6, 1, 5, 11));
 	Scale(2.0);
 	MoveTo(Fazendinha::player->X(), Fazendinha::player->Y() + 100);
 
+	timer.Start();
+	
 	type = PLANTATION;
 
 }
@@ -37,10 +40,17 @@ void Plantation::Update() {
 	if (animation->Frame() == numStages - 1) {
 		plantationState = MATURE;
 	}
-	else if(Fazendinha::timer.Elapsed(600.0f)){
+	else if(Fazendinha::timer.Elapsed(2.0f) && regada){
 		animation->NextFrame();
+		regada = false;
 	}
 	
+	if (timer.Elapsed(0.0001f)) {
+		if (objGround == nullptr) {
+			Fazendinha::scene->Delete();
+		}
+	}
+
 }
 
 void Plantation::OnCollision(Object* obj) {
@@ -55,4 +65,5 @@ void Plantation::OnCollision(Object* obj) {
 			Fazendinha::scene->Delete(this, STATIC);
 		}
 	}
+
 }

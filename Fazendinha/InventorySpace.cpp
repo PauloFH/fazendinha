@@ -16,6 +16,10 @@ InventorySpace::~InventorySpace() {
 
 void InventorySpace::Update() {
 	ocupado = false;
+
+	if (cont < 0) {
+		Fazendinha::scene->Delete(objItem, MOVING);
+	}
 }
 
 void InventorySpace::Draw() {
