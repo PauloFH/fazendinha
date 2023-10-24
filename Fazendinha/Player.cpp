@@ -226,6 +226,77 @@ void Player::Update()
 
             }
         }
+        if (usavel->itemType == SEEDCOUVEFLOR) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(COUVEFLOR);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDMELAO) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(MELAO);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDBERINJELA) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(BERINJELA);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDABOBORA) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(ABOBORA);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDMILHO) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(MILHO);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDBATATA) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(BATATA);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+        if (usavel->itemType == SEEDABACAXI) {
+
+            if (window->KeyPress('R')) {
+                Plantation* plant = new Plantation(ABACAXI);
+                Fazendinha::scene->Add(plant, MOVING);
+                usavel->space->cont--;
+                plant->MoveTo(Fazendinha::mouse->X() - 8, Fazendinha::mouse->Y() - 8);
+
+            }
+        }
+
     }
 
     vel = 250;

@@ -5,7 +5,13 @@
 
 enum PlantationType {
 	CHIRIVIA,
-	COUVEFLOR
+	COUVEFLOR,
+	MELAO,
+	BERINJELA,
+	MILHO,
+	ABOBORA,
+	ABACAXI,
+	BATATA
 };
 
 enum PlantationState {
