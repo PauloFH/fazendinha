@@ -232,7 +232,7 @@ void Fazendinha::Update()
     else {
 
     // ativa ou desativa a bounding box
-    if (window->KeyPress('B') || Fazendinha::gamepad->XboxButton(ButtonA)) {
+    if (window->KeyPress('B') || Fazendinha::gamepad->XboxButton(ButtonStart)) {
         //viewBBox = !viewBBox;
         Filter::activated = !Filter::activated;
     }
