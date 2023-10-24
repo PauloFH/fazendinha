@@ -1,6 +1,7 @@
 
 #include "Object.h"
 #include "Sprite.h"
+#include "Plantation.h"
 
 class Ground : public Object {
 private:
@@ -16,6 +17,7 @@ private:
 public:
 	bool isMolhado = false;
 	bool isArado = false;
+	Plantation* planted;
 
 	int Height();
 	int Width();

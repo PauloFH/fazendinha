@@ -20,13 +20,13 @@ class Item : public Object {
 private:
 
 	Sprite* sprite;
-	bool moving = false;
 
 public:
 	uint itemType;
 	InventorySpace* space;
 	bool considerado = false;
 	bool pego = false;
+	bool moving = false;
 
 	Item(uint itType = 0, InventorySpace* spc = nullptr);
 	~Item();

@@ -101,6 +101,9 @@ void Fazendinha::Init()
 
     Item* seedChirivia = new Item(1, inventary->spaces[5]);
     scene->Add(seedChirivia, MOVING);
+    
+    Item* seedChirivia2 = new Item(1, inventary->spaces[6]);
+    scene->Add(seedChirivia2, MOVING);
 
     Filter* filter = new Filter();
     scene->Add(filter, STATIC);
@@ -204,7 +207,11 @@ void Fazendinha::Update()
   
     for (int i = 0; i < 12; i++) {
 
-        Item* it = dynamic_cast<Item*>(inventary->spaces[i]->objItem);
+        Item* it = nullptr;
+
+        if (inventary->spaces[i]->cont > 0 && inventary->spaces[i]->objItem != nullptr) {
+            it = dynamic_cast<Item*>(inventary->spaces[i]->objItem);
+        }
 
         if (it != nullptr) {
 

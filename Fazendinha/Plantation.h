@@ -23,8 +23,12 @@ private:
 	int numStages = 8;
 	int stage = 0;
 	int initialDay;
+	Timer timer;
 
 public:
+	Object* objGround;
+	bool regada = false;
+
 	Plantation(uint plant);
 	~Plantation();
 
