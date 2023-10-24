@@ -15,6 +15,7 @@ private:
 
 public:
 	bool isMolhado = false;
+	bool isArado = false;
 
 	int Height();
 	int Width();

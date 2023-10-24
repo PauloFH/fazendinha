@@ -123,6 +123,9 @@ void Fazendinha::Init()
     Item* regador = new Item(ITEMREGADOR, bau->bauOpened->spaces[2]);
     scene->Add(regador, MOVING);
 
+    Item* arador = new Item(ITEMARADOR, bau->bauOpened->spaces[7]);
+    scene->Add(arador, MOVING);
+
     Enemy* bug = new Enemy();
     scene->Add(bug, MOVING);
 

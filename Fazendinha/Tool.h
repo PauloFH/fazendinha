@@ -20,7 +20,7 @@ private:
 	Particles* agua;
 
 public:
-	Tool();
+	Tool(uint tipo = 15);
 	~Tool();
 
 	void Update();

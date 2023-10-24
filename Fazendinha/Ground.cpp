@@ -26,7 +26,12 @@ void Ground::Update() {
 		sprite = molhado;
 	}
 	else {
-		sprite = normal;
+		if (isArado) {
+			sprite = arado;
+		}
+		else {
+			sprite = normal;
+		}
 	}
 }
 
