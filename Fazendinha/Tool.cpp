@@ -6,14 +6,16 @@ Tool::Tool(uint tipo) {
 
 	if(tipo == REGADOR){
 	
-		tileset = new TileSet("Resources/regador.png", 16, 32, 5, 5);
+		tileset = new TileSet("Resources/regador.png", 16, 32, 7, 7);
 		animation = new Animation(tileset, 0.2, true);
 
 		uint front[2] = { 0, 1 };
 		uint side[2] = { 2, 3 };
+		uint anotherside[2] = { 6, 5 };
 
 		animation->Add(TOOLFRONT, front, 2);
 		animation->Add(TOOLSIDE, side, 2);
+		animation->Add(TOOLANOTHERSIDE, anotherside, 2);
 
 		// configuração do gerador de partículas
 		Generator emitter;
@@ -37,14 +39,17 @@ Tool::Tool(uint tipo) {
 
 	}
 	else if (tipo == ARADOR) {
-		tileset = new TileSet("Resources/arador.png", 16, 32, 5, 5);
+		tileset = new TileSet("Resources/arador.png", 16, 28, 6, 6);
 		animation = new Animation(tileset, 0.2, true);
 
 		uint front[2] = { 0, 1 };
 		uint side[1] = { 2 };
+		uint anotherside[1] = { 5 };
 
 		animation->Add(TOOLFRONT, front, 2);
 		animation->Add(TOOLSIDE, side, 1);
+		animation->Add(TOOLANOTHERSIDE, anotherside, 1);
+
 
 		type = ARADOR;
 	}
@@ -63,7 +68,6 @@ Tool::~Tool() {
 
 void Tool::Update() {
 
-	state = TOOLSIDE;
 	if (state == TOOLSIDE) {
 
 		if (type == ARADOR) {
@@ -76,16 +80,26 @@ void Tool::Update() {
 
 	}
 
-	if (animation->Frame() == 1 || animation->Frame() == 3) {
+	if (state == TOOLANOTHERSIDE) {
+
+		if (type == ARADOR) {
+			Rotate(-5.0f);
+
+			if (rotation < -95.0f) {
+				Fazendinha::scene->Delete();
+			}
+		}
+	}
+
+	if (animation->Frame() == 1 || animation->Frame() == 3 || animation->Frame() == 5) {
 		if (type == REGADOR) {
 			if (timer.Elapsed(2.0f)) {
 				animation->NextFrame();
 				Fazendinha::scene->Delete();
 			}
 		}
-		if (type == ARADOR) {
+		if (animation->Frame() != 5 && type == ARADOR) {
 			if (timer.Elapsed(0.2f)) {
-				// voltar pro angulo inicial
 				animation->NextFrame();
 				Fazendinha::scene->Delete();
 			}
@@ -102,6 +116,9 @@ void Tool::Update() {
 		}
 		else if(state == TOOLSIDE){
 			agua->Generate(x + 12, y + 12);
+		}
+		else if (state == TOOLANOTHERSIDE) {
+			agua->Generate(x - 12, y + 12);
 		}
 
 		agua->Update(gameTime);

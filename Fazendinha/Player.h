@@ -14,8 +14,7 @@
 
 // ---------------------------------------------------------------------------------
 
-#include "Object.h"                        // objetos do jogo
-#include "Sprite.h"                        // desenho de sprites
+#include "Object.h"                        // objetos do jogo                
 #include "Vector.h"                        // representação de vetores
 #include "Particles.h"                    // sistema de partículas
 #include "Item.h"
@@ -26,16 +25,25 @@
 enum playerState {
     NORMAL,
     HOLDING,
-    TOOL
+    TOOL,
+    PLAYERLEFT,
+    PLAYERRIGHT,
+    PLAYERUP,
+    PLAYERDOWN,
+    NORMALLEFT,
+    NORMALRIGHT,
+    NORMALUP,
+    NORMALDOWN
 };
 
 class Player : public Object
 {
 private:
-    Sprite * sprite;                    // sprite do objeto
     TileSet* tileset;
     Animation* animation;
     uint state = NORMAL;
+    uint relaxState = NORMAL;
+    int vel = 0;
 
 public:
     Vector * speed;                     // velocidade e direção
@@ -50,6 +58,7 @@ public:
     void Move(Vector && v);             // movimenta jogador
     void Update();                      // atualização
     void Draw();                        // desenho
+    void OnCollision(Object* obj);
 }; 
 // ---------------------------------------------------------------------------------
 

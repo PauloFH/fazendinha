@@ -14,18 +14,48 @@
 #include "Fazendinha.h"
 #include "Tool.h"
 #include "Plantation.h"
+#include "Build.h"
 
 // -------------------------------------------------------------------------------
 
 Player::Player()
 {
     // configuração do objeto
-    sprite = new Sprite("Resources/Player.png");
+    //sprite = new Sprite("Resources/Player.png");
+    tileset = new TileSet("Resources/player.png", 96, 192, 6, 36);
+    animation = new Animation(tileset, 0.2f, true);
+
+    uint normal[1] = { 0 };
+    uint playerleft[3] = { 35, 34, 33 };
+    uint normalleft[1] = { 35 };
+    uint playerright[3] = { 3, 4, 5 };
+    uint normalright[1] = { 3 };
+    uint playerup[2] = { 8, 9 };
+    uint normalup[1] = { 7 };
+    uint playerdown[2] = { 1, 2 };
+    uint normaldown[1] = { 0 };
+
+    animation->Add(NORMAL, normal, 1);
+    animation->Add(PLAYERLEFT, playerleft, 3);
+    animation->Add(PLAYERRIGHT, playerright, 3);
+    animation->Add(PLAYERUP, playerup, 2);
+    animation->Add(PLAYERDOWN, playerdown, 2);
+    animation->Add(NORMALLEFT, normalleft, 1);
+    animation->Add(NORMALRIGHT, normalright, 1);
+    animation->Add(NORMALUP, normalup, 1);
+    animation->Add(NORMALDOWN, normaldown, 1);
+
     speed  = new Vector(90.0f, 0.0f);
-    BBox(new Circle(18.0f));
+
+    vel = 250;
+
+    //BBox(new Rect(-48, -96, 47, 95));
+    BBox(new Rect(-48, -0, 47, 95));
     MoveTo(500, 600);
    // MoveTo(game->CenterX(), game->CenterY());
     type = PLAYER;
+
+    Scale(0.4f);
 
 }
 
@@ -33,7 +63,8 @@ Player::Player()
 
 Player::~Player()
 {
-    delete sprite;
+    delete animation;
+    delete tileset;
     delete speed;
 }
 
@@ -53,6 +84,38 @@ void Player::Move(Vector && v)
 
 void Player::Update()
 {
+
+    animation->Select(state);
+    animation->NextFrame();
+    if (animation->Frame() == 0) {
+        animation->NextFrame();
+    }
+
+    state = relaxState;
+
+    if (window->KeyDown(VK_DOWN) || window->KeyDown('S')) {
+        Translate(0, vel * gameTime);
+        state = PLAYERDOWN;
+        relaxState = NORMALDOWN;
+    }
+    else if (window->KeyDown(VK_UP) || window->KeyDown('W')) {
+        Translate(0, -vel * gameTime);
+        state = PLAYERUP;
+        relaxState = NORMALUP;
+    }
+
+    if (window->KeyDown(VK_RIGHT) || window->KeyDown('D')) {
+        Translate(vel * gameTime, 0);
+        state = PLAYERRIGHT;
+        relaxState = NORMALRIGHT;
+    }
+    else if (window->KeyDown(VK_LEFT) || window->KeyDown('A')) {
+        Translate(-vel * gameTime, 0);
+        state = PLAYERLEFT;
+        relaxState = NORMALLEFT;
+    }
+
+    /*
     // magnitude do vetor aceleração
     float accel = 40.0f * gameTime;
 
@@ -83,7 +146,7 @@ void Player::Update()
     
     // movimenta objeto pelo seu vetor velocidade
     Translate(speed->XComponent() * 50.0f * gameTime, -speed->YComponent() * 50.0f * gameTime);
-
+    */
     // dispara míssil
     if (window->KeyPress(VK_SPACE))
     {
@@ -113,21 +176,43 @@ void Player::Update()
     if (usavel != nullptr) {
         if (usavel->itemType == ITEMREGADOR) {
 
-            state = TOOL;
+            //state = TOOL;
             if (window->KeyPress('R')) {
                 Tool* regador = new Tool();
                 Fazendinha::scene->Add(regador, MOVING);
                 regador->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
+
+                if (state == PLAYERLEFT || state == NORMALLEFT) {
+                    regador->state = TOOLANOTHERSIDE;
+                    regador->MoveTo(x - 16, y);
+                }
+                if (state == PLAYERRIGHT || state == NORMALRIGHT) {
+                    regador->state = TOOLSIDE;
+                    regador->MoveTo(x + 16, y);
+                }
+                if (state == PLAYERDOWN || state == NORMALDOWN) {
+                    regador->state == TOOLFRONT;
+                }
             }
         }
 
         if (usavel->itemType == ITEMARADOR) {
 
-            state = TOOL;
+            //state = TOOL;
             if (window->KeyPress('R')) {
                 Tool* arador = new Tool(ARADOR);
                 Fazendinha::scene->Add(arador, MOVING);
                 arador->MoveTo(Fazendinha::player->X(), Fazendinha::player->Y());
+
+                if (state == PLAYERLEFT || state == NORMALLEFT) {
+                    arador->state = TOOLANOTHERSIDE;
+                }
+                if (state == PLAYERRIGHT || state == NORMALRIGHT) {
+                    arador->state = TOOLSIDE;
+                }
+                if (state == PLAYERDOWN || state == NORMALDOWN) {
+                    arador->state == TOOLFRONT;
+                }
             }
         }
 
@@ -143,14 +228,54 @@ void Player::Update()
         }
     }
 
+    vel = 250;
+
 }
 
 // ---------------------------------------------------------------------------------
 
 void Player::Draw()
 {
-    sprite->Draw(x, y, Layer::MIDDLE, 1.0f, -speed->Angle() + 90.0f);
+    animation->Draw(x, y, Layer::MIDDLE, scale);
 }
 
 
 // -------------------------------------------------------------------------------
+
+void Player::OnCollision(Object* obj) {
+    if (obj->Type() == HOME || obj->Type() == SHOP_BUILD || obj->Type() == COMMUNITY) {
+
+        vel = 0;
+
+        Build* build = dynamic_cast<Build*>(obj);
+
+        // Calcula a direção da colisão
+        float collisionDirectionX = x - build->X();
+        float collisionDirectionY = y - build->Y();
+
+        // Define a distância mínima para evitar sobreposição
+        float minimumDistance = 40.0f;
+
+        // Verifica a direção da colisão e ajusta a posição do jogador
+        
+            // A colisão é principalmente horizontal, ajuste na direção X
+            if (collisionDirectionX > 0) {
+                MoveTo(build->X() + build->Width() + minimumDistance, y);
+            }
+            else {
+                MoveTo(build->X() - build->Width() - minimumDistance, y);
+            }
+        
+       
+            // A colisão é principalmente vertical, ajuste na direção Y
+            if (collisionDirectionY > 0) {
+                MoveTo(x, build->Y() + build->Height() + minimumDistance);
+            }
+            else {
+                MoveTo(x, build->Y() - build->Height() - minimumDistance);
+            }
+        
+    }
+}
+
+
