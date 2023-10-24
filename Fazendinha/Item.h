@@ -11,7 +11,8 @@ enum ItemTypes {
 	SEEDCOUVEFLOR,
 	ITEMMELAO,
 	SEEDMELAO, 
-	ITEMREGADOR
+	ITEMREGADOR,
+	ITEMARADOR
 };
 
 class Item : public Object {
